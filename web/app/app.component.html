@@ -1,0 +1,49 @@
+﻿<!-- navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+                <button type="button" 
+                        class="navbar-toggle collapsed"
+                        (click)="toggleState()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">Project Manager</a>
+        </div>
+         <div class="collapse navbar-collapse"
+              [ngClass]="{ 'in': isIn }">
+            <ul class="nav navbar-nav">
+                <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+                <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+                <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+                <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+                <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+                <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+                <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br/><br/>
+<!-- main app container -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
+            <alert></alert>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+<!-- credits -->
+<div class="text-center">
+    <p>
+        <a href="http://jasonwatmore.com/post/2016/09/29/angular-2-user-registration-and-login-example-tutorial" target="_top">Angular 2 User Registration and Login Example & Tutorial</a>
+    </p>
+    <p>
+        <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+    </p>
+</div>
