@@ -1,0 +1,107 @@
+<div>
+    <h2>
+        <span jhiTranslate="blogApp.report.home.title">Reports</span>
+        <button class="btn btn-primary float-right jh-create-entity create-report-my-suffix" [routerLink]="['/', { outlets: { popup: ['report-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="blogApp.report.home.createLabel">
+            Create new Report
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'blogApp.report.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="reports">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="victimName"><span jhiTranslate="blogApp.report.victimName">Victim Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="parentName"><span jhiTranslate="blogApp.report.parentName">Parent Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="parentPhoneNumber"><span jhiTranslate="blogApp.report.parentPhoneNumber">Parent Phone Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateOfBirth"><span jhiTranslate="blogApp.report.dateOfBirth">Date Of Birth</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phoneNumber"><span jhiTranslate="blogApp.report.phoneNumber">Phone Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="height"><span jhiTranslate="blogApp.report.height">Height</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="weight"><span jhiTranslate="blogApp.report.weight">Weight</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="eyeColor"><span jhiTranslate="blogApp.report.eyeColor">Eye Color</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="demographic"><span jhiTranslate="blogApp.report.demographic">Demographic</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastKnownLocation"><span jhiTranslate="blogApp.report.lastKnownLocation">Last Known Location</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="timeOfLastSeen"><span jhiTranslate="blogApp.report.timeOfLastSeen">Time Of Last Seen</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serviceProvider"><span jhiTranslate="blogApp.report.serviceProvider">Service Provider</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="masterAccountNumber"><span jhiTranslate="blogApp.report.masterAccountNumber">Master Account Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="complaintNumber"><span jhiTranslate="blogApp.report.complaintNumber">Complaint Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reportNumber"><span jhiTranslate="blogApp.report.reportNumber">Report Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="investigatorEmail"><span jhiTranslate="blogApp.report.investigatorEmail">Investigator Email</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let report of reports ;trackBy: trackId">
+                <td><a [routerLink]="['../report-my-suffix', report.id ]">{{report.id}}</a></td>
+                <td>{{report.victimName}}</td>
+                <td>{{report.parentName}}</td>
+                <td>{{report.parentPhoneNumber}}</td>
+                <td>{{report.dateOfBirth | date:'medium'}}</td>
+                <td>{{report.phoneNumber}}</td>
+                <td>{{report.height}}</td>
+                <td>{{report.weight}}</td>
+                <td>{{report.eyeColor}}</td>
+                <td>{{report.demographic}}</td>
+                <td>{{report.lastKnownLocation}}</td>
+                <td>{{report.timeOfLastSeen | date:'medium'}}</td>
+                <td>{{report.serviceProvider}}</td>
+                <td>{{report.masterAccountNumber}}</td>
+                <td>{{report.complaintNumber}}</td>
+                <td>{{report.reportNumber}}</td>
+                <td>{{report.investigatorEmail}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../report-my-suffix', report.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'report-my-suffix/'+ report.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'report-my-suffix/'+ report.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="reports && reports.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,85 @@
+
+<div *ngIf="report">
+    <h2><span jhiTranslate="blogApp.report.detail.title">Report</span> {{report.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="blogApp.report.victimName">Victim Name</span></dt>
+        <dd>
+            <span>{{report.victimName}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.parentName">Parent Name</span></dt>
+        <dd>
+            <span>{{report.parentName}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.parentPhoneNumber">Parent Phone Number</span></dt>
+        <dd>
+            <span>{{report.parentPhoneNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.dateOfBirth">Date Of Birth</span></dt>
+        <dd>
+            <span>{{report.dateOfBirth | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.phoneNumber">Phone Number</span></dt>
+        <dd>
+            <span>{{report.phoneNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.height">Height</span></dt>
+        <dd>
+            <span>{{report.height}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.weight">Weight</span></dt>
+        <dd>
+            <span>{{report.weight}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.eyeColor">Eye Color</span></dt>
+        <dd>
+            <span>{{report.eyeColor}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.demographic">Demographic</span></dt>
+        <dd>
+            <span>{{report.demographic}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.lastKnownLocation">Last Known Location</span></dt>
+        <dd>
+            <span>{{report.lastKnownLocation}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.timeOfLastSeen">Time Of Last Seen</span></dt>
+        <dd>
+            <span>{{report.timeOfLastSeen | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.serviceProvider">Service Provider</span></dt>
+        <dd>
+            <span>{{report.serviceProvider}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.masterAccountNumber">Master Account Number</span></dt>
+        <dd>
+            <span>{{report.masterAccountNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.complaintNumber">Complaint Number</span></dt>
+        <dd>
+            <span>{{report.complaintNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.reportNumber">Report Number</span></dt>
+        <dd>
+            <span>{{report.reportNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="blogApp.report.investigatorEmail">Investigator Email</span></dt>
+        <dd>
+            <span>{{report.investigatorEmail}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'report-my-suffix/'+ report.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

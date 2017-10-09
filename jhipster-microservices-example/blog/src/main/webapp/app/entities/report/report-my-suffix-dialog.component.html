@@ -1,0 +1,109 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myReportLabel" jhiTranslate="blogApp.report.home.createOrEditLabel">Create or edit a Report</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!report.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="report.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.victimName" for="field_victimName">Victim Name</label>
+            <input type="text" class="form-control" name="victimName" id="field_victimName"
+                [(ngModel)]="report.victimName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.parentName" for="field_parentName">Parent Name</label>
+            <input type="text" class="form-control" name="parentName" id="field_parentName"
+                [(ngModel)]="report.parentName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.parentPhoneNumber" for="field_parentPhoneNumber">Parent Phone Number</label>
+            <input type="text" class="form-control" name="parentPhoneNumber" id="field_parentPhoneNumber"
+                [(ngModel)]="report.parentPhoneNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.dateOfBirth" for="field_dateOfBirth">Date Of Birth</label>
+            <div class="d-flex">
+                <input id="field_dateOfBirth" type="datetime-local" class="form-control" name="dateOfBirth" [(ngModel)]="report.dateOfBirth"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.phoneNumber" for="field_phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                [(ngModel)]="report.phoneNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.height" for="field_height">Height</label>
+            <input type="text" class="form-control" name="height" id="field_height"
+                [(ngModel)]="report.height"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.weight" for="field_weight">Weight</label>
+            <input type="number" class="form-control" name="weight" id="field_weight"
+                [(ngModel)]="report.weight"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.eyeColor" for="field_eyeColor">Eye Color</label>
+            <input type="text" class="form-control" name="eyeColor" id="field_eyeColor"
+                [(ngModel)]="report.eyeColor"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.demographic" for="field_demographic">Demographic</label>
+            <input type="text" class="form-control" name="demographic" id="field_demographic"
+                [(ngModel)]="report.demographic"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.lastKnownLocation" for="field_lastKnownLocation">Last Known Location</label>
+            <input type="text" class="form-control" name="lastKnownLocation" id="field_lastKnownLocation"
+                [(ngModel)]="report.lastKnownLocation"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.timeOfLastSeen" for="field_timeOfLastSeen">Time Of Last Seen</label>
+            <div class="d-flex">
+                <input id="field_timeOfLastSeen" type="datetime-local" class="form-control" name="timeOfLastSeen" [(ngModel)]="report.timeOfLastSeen"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.serviceProvider" for="field_serviceProvider">Service Provider</label>
+            <input type="text" class="form-control" name="serviceProvider" id="field_serviceProvider"
+                [(ngModel)]="report.serviceProvider"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.masterAccountNumber" for="field_masterAccountNumber">Master Account Number</label>
+            <input type="text" class="form-control" name="masterAccountNumber" id="field_masterAccountNumber"
+                [(ngModel)]="report.masterAccountNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.complaintNumber" for="field_complaintNumber">Complaint Number</label>
+            <input type="text" class="form-control" name="complaintNumber" id="field_complaintNumber"
+                [(ngModel)]="report.complaintNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.reportNumber" for="field_reportNumber">Report Number</label>
+            <input type="text" class="form-control" name="reportNumber" id="field_reportNumber"
+                [(ngModel)]="report.reportNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="blogApp.report.investigatorEmail" for="field_investigatorEmail">Investigator Email</label>
+            <input type="text" class="form-control" name="investigatorEmail" id="field_investigatorEmail"
+                [(ngModel)]="report.investigatorEmail"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
