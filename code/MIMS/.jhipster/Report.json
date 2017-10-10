@@ -1,0 +1,76 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "victimName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "parentName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "parentPhoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateOfBirth",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "height",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "weight",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "eyeColor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "demographic",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastKnownLocation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "timeOfLastSeen",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "serviceProvider",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "masterAccountNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "complaintNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reportNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "investigatorEmail",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171010033709",
+    "entityTableName": "report",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "mySuffix"
+}
