@@ -1,0 +1,107 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "resolution",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "victimName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "victimPhoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "victimEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "parentName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "parentPhoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "parentEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateOfBirth",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "height",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "weight",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "eyeColor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "demographic",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastKnownLocation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastSeen",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "serviceProvider",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "serviceProviderAccountNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "complaintNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reportNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "investigatorName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "investigatorEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updatedAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "photos",
+            "fieldType": "byte[]"
+        }
+    ],
+    "changelogDate": "20171017215150",
+    "entityTableName": "report",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "no"
+}
