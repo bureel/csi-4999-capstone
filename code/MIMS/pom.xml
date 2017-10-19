@@ -167,6 +167,12 @@
             <scope>test</scope>
             <!-- parent POM declares this dependency in default (compile) scope -->
         </dependency>
+	    <!-- mailgun library -->
+	    <dependency>
+    		<groupId>net.sargue</groupId>
+    		<artifactId>mailgun</artifactId>
+    		<version>1.5.0</version>
+	    </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -355,12 +361,6 @@
             <artifactId>spring-security-data</artifactId>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
-	<!-- mailgun library -->
-	<dependency>
-    		<groupId>net.sargue</groupId>
-    		<artifactId>mailgun</artifactId>
-    		<version>1.5.0</version>
-	</dependency>
     </dependencies>
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>

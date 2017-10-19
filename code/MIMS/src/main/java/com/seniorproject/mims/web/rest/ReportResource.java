@@ -10,8 +10,11 @@ import com.seniorproject.mims.service.dto.ReportDTO;
 import com.seniorproject.mims.service.mapper.ReportMapper;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+import net.sargue.mailgun.Configuration;
+import net.sargue.mailgun.Mail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -40,9 +43,12 @@ public class ReportResource {
 
     private final ReportMapper reportMapper;
 
-    public ReportResource(ReportRepository reportRepository, ReportMapper reportMapper) {
+    private final Configuration mailGunConfig;
+    @Autowired
+    public ReportResource(ReportRepository reportRepository, ReportMapper reportMapper, Configuration mailGunConfig) {
         this.reportRepository = reportRepository;
         this.reportMapper = reportMapper;
+        this.mailGunConfig = mailGunConfig;
     }
 
     /**
@@ -62,6 +68,7 @@ public class ReportResource {
         Report report = reportMapper.toEntity(reportDTO);
         report = reportRepository.save(report);
         ReportDTO result = reportMapper.toDto(report);
+        sendEmail();
         return ResponseEntity.created(new URI("/api/reports/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -86,6 +93,7 @@ public class ReportResource {
         Report report = reportMapper.toEntity(reportDTO);
         report = reportRepository.save(report);
         ReportDTO result = reportMapper.toDto(report);
+        sendEmail();
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, reportDTO.getId().toString()))
             .body(result);
@@ -133,5 +141,16 @@ public class ReportResource {
         log.debug("REST request to delete Report : {}", id);
         reportRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    public void sendEmail() {
+        Mail.using(mailGunConfig)
+                .to("bureel@oakland.edu")
+                .subject("This message has an text attachment")
+                .text("Please find attached a file.")
+                .multipart()
+                //.attachment(new File("/path/to/image.jpg"))
+                .build()
+                .send();
     }
 }
