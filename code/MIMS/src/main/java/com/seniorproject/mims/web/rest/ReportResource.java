@@ -1,10 +1,13 @@
 package com.seniorproject.mims.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.seniorproject.mims.service.ReportService;
+import com.seniorproject.mims.domain.Report;
+
+import com.seniorproject.mims.repository.ReportRepository;
 import com.seniorproject.mims.web.rest.util.HeaderUtil;
 import com.seniorproject.mims.web.rest.util.PaginationUtil;
 import com.seniorproject.mims.service.dto.ReportDTO;
+import com.seniorproject.mims.service.mapper.ReportMapper;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -21,9 +24,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Report.
@@ -36,10 +36,13 @@ public class ReportResource {
 
     private static final String ENTITY_NAME = "report";
 
-    private final ReportService reportService;
+    private final ReportRepository reportRepository;
 
-    public ReportResource(ReportService reportService) {
-        this.reportService = reportService;
+    private final ReportMapper reportMapper;
+
+    public ReportResource(ReportRepository reportRepository, ReportMapper reportMapper) {
+        this.reportRepository = reportRepository;
+        this.reportMapper = reportMapper;
     }
 
     /**
@@ -56,7 +59,9 @@ public class ReportResource {
         if (reportDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new report cannot already have an ID")).body(null);
         }
-        ReportDTO result = reportService.save(reportDTO);
+        Report report = reportMapper.toEntity(reportDTO);
+        report = reportRepository.save(report);
+        ReportDTO result = reportMapper.toDto(report);
         return ResponseEntity.created(new URI("/api/reports/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -78,7 +83,9 @@ public class ReportResource {
         if (reportDTO.getId() == null) {
             return createReport(reportDTO);
         }
-        ReportDTO result = reportService.save(reportDTO);
+        Report report = reportMapper.toEntity(reportDTO);
+        report = reportRepository.save(report);
+        ReportDTO result = reportMapper.toDto(report);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, reportDTO.getId().toString()))
             .body(result);
@@ -94,9 +101,9 @@ public class ReportResource {
     @Timed
     public ResponseEntity<List<ReportDTO>> getAllReports(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Reports");
-        Page<ReportDTO> page = reportService.findAll(pageable);
+        Page<Report> page = reportRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/reports");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(reportMapper.toDto(page.getContent()), headers, HttpStatus.OK);
     }
 
     /**
@@ -109,7 +116,8 @@ public class ReportResource {
     @Timed
     public ResponseEntity<ReportDTO> getReport(@PathVariable Long id) {
         log.debug("REST request to get Report : {}", id);
-        ReportDTO reportDTO = reportService.findOne(id);
+        Report report = reportRepository.findOne(id);
+        ReportDTO reportDTO = reportMapper.toDto(report);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(reportDTO));
     }
 
@@ -123,25 +131,7 @@ public class ReportResource {
     @Timed
     public ResponseEntity<Void> deleteReport(@PathVariable Long id) {
         log.debug("REST request to delete Report : {}", id);
-        reportService.delete(id);
+        reportRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/reports?query=:query : search for the report corresponding
-     * to the query.
-     *
-     * @param query the query of the report search
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/reports")
-    @Timed
-    public ResponseEntity<List<ReportDTO>> searchReports(@RequestParam String query, @ApiParam Pageable pageable) {
-        log.debug("REST request to search for a page of Reports for query {}", query);
-        Page<ReportDTO> page = reportService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/reports");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
 }

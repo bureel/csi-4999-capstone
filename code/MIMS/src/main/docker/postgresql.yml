@@ -3,9 +3,9 @@ services:
     mims-postgresql:
         image: postgres:9.6.5
         # volumes:
-        #     - ~/volumes/jhipster/MIMS/postgresql/:/var/lib/postgresql/data/
+        #     - ~/volumes/jhipster/mims/postgresql/:/var/lib/postgresql/data/
         environment:
-            - POSTGRES_USER=MIMS
+            - POSTGRES_USER=mims
             - POSTGRES_PASSWORD=
         ports:
             - 5432:5432

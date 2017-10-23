@@ -1,7 +1,7 @@
 {
   "name": "mims",
   "version": "0.0.0",
-  "description": "Description for MIMS",
+  "description": "Description for mims",
   "private": true,
   "license": "UNLICENSED",
   "cacheDirectories": [
@@ -60,7 +60,6 @@
     "karma-remap-istanbul": "0.6.0",
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "2.0.4",
-    "merge-jsons-webpack-plugin": "1.0.11",
     "ngc-webpack": "3.2.2",
     "proxy-middleware": "0.15.0",
     "puppeteer": "0.10.2",
@@ -72,9 +71,6 @@
     "tslint": "5.5.0",
     "tslint-loader": "3.5.3",
     "typescript": "2.5.2",
-    "sass-loader": "6.0.6",
-    "node-sass": "4.5.3",
-    "postcss-loader": "2.0.6",
     "xml2js": "0.4.17",
     "uglifyjs-webpack-plugin": "1.0.0-beta.2",
     "webpack": "3.6.0",

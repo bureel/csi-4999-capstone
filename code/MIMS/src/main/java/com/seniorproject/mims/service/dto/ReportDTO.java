@@ -1,9 +1,11 @@
 package com.seniorproject.mims.service.dto;
 
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Lob;
 
 /**
  * A DTO for the Report entity.
@@ -12,19 +14,27 @@ public class ReportDTO implements Serializable {
 
     private Long id;
 
+    private String status;
+
+    private String resolution;
+
     private String victimName;
+
+    private String victimPhoneNumber;
+
+    private String victimEmail;
 
     private String parentName;
 
     private String parentPhoneNumber;
 
-    private ZonedDateTime dateOfBirth;
+    private String parentEmail;
 
-    private String phoneNumber;
+    private LocalDate dateOfBirth;
 
     private String height;
 
-    private Long weight;
+    private Double weight;
 
     private String eyeColor;
 
@@ -32,17 +42,29 @@ public class ReportDTO implements Serializable {
 
     private String lastKnownLocation;
 
-    private ZonedDateTime timeOfLastSeen;
+    private ZonedDateTime lastSeen;
 
     private String serviceProvider;
 
-    private String masterAccountNumber;
+    private String serviceProviderAccountNumber;
 
     private String complaintNumber;
 
     private String reportNumber;
 
+    private String investigatorName;
+
     private String investigatorEmail;
+
+    private ZonedDateTime createdAt;
+
+    private ZonedDateTime updatedAt;
+
+    @Lob
+    private byte[] photos;
+    private String photosContentType;
+
+    private String additionalInformation;
 
     public Long getId() {
         return id;
@@ -52,12 +74,44 @@ public class ReportDTO implements Serializable {
         this.id = id;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getResolution() {
+        return resolution;
+    }
+
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
+    }
+
     public String getVictimName() {
         return victimName;
     }
 
     public void setVictimName(String victimName) {
         this.victimName = victimName;
+    }
+
+    public String getVictimPhoneNumber() {
+        return victimPhoneNumber;
+    }
+
+    public void setVictimPhoneNumber(String victimPhoneNumber) {
+        this.victimPhoneNumber = victimPhoneNumber;
+    }
+
+    public String getVictimEmail() {
+        return victimEmail;
+    }
+
+    public void setVictimEmail(String victimEmail) {
+        this.victimEmail = victimEmail;
     }
 
     public String getParentName() {
@@ -76,20 +130,20 @@ public class ReportDTO implements Serializable {
         this.parentPhoneNumber = parentPhoneNumber;
     }
 
-    public ZonedDateTime getDateOfBirth() {
+    public String getParentEmail() {
+        return parentEmail;
+    }
+
+    public void setParentEmail(String parentEmail) {
+        this.parentEmail = parentEmail;
+    }
+
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(ZonedDateTime dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public String getHeight() {
@@ -100,11 +154,11 @@ public class ReportDTO implements Serializable {
         this.height = height;
     }
 
-    public Long getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(Long weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
@@ -132,12 +186,12 @@ public class ReportDTO implements Serializable {
         this.lastKnownLocation = lastKnownLocation;
     }
 
-    public ZonedDateTime getTimeOfLastSeen() {
-        return timeOfLastSeen;
+    public ZonedDateTime getLastSeen() {
+        return lastSeen;
     }
 
-    public void setTimeOfLastSeen(ZonedDateTime timeOfLastSeen) {
-        this.timeOfLastSeen = timeOfLastSeen;
+    public void setLastSeen(ZonedDateTime lastSeen) {
+        this.lastSeen = lastSeen;
     }
 
     public String getServiceProvider() {
@@ -148,12 +202,12 @@ public class ReportDTO implements Serializable {
         this.serviceProvider = serviceProvider;
     }
 
-    public String getMasterAccountNumber() {
-        return masterAccountNumber;
+    public String getServiceProviderAccountNumber() {
+        return serviceProviderAccountNumber;
     }
 
-    public void setMasterAccountNumber(String masterAccountNumber) {
-        this.masterAccountNumber = masterAccountNumber;
+    public void setServiceProviderAccountNumber(String serviceProviderAccountNumber) {
+        this.serviceProviderAccountNumber = serviceProviderAccountNumber;
     }
 
     public String getComplaintNumber() {
@@ -172,12 +226,60 @@ public class ReportDTO implements Serializable {
         this.reportNumber = reportNumber;
     }
 
+    public String getInvestigatorName() {
+        return investigatorName;
+    }
+
+    public void setInvestigatorName(String investigatorName) {
+        this.investigatorName = investigatorName;
+    }
+
     public String getInvestigatorEmail() {
         return investigatorEmail;
     }
 
     public void setInvestigatorEmail(String investigatorEmail) {
         this.investigatorEmail = investigatorEmail;
+    }
+
+    public ZonedDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(ZonedDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public ZonedDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(ZonedDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public byte[] getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(byte[] photos) {
+        this.photos = photos;
+    }
+
+    public String getPhotosContentType() {
+        return photosContentType;
+    }
+
+    public void setPhotosContentType(String photosContentType) {
+        this.photosContentType = photosContentType;
+    }
+
+    public String getAdditionalInformation() {
+        return additionalInformation;
+    }
+
+    public void setAdditionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
     }
 
     @Override
@@ -205,22 +307,31 @@ public class ReportDTO implements Serializable {
     public String toString() {
         return "ReportDTO{" +
             "id=" + getId() +
+            ", status='" + getStatus() + "'" +
+            ", resolution='" + getResolution() + "'" +
             ", victimName='" + getVictimName() + "'" +
+            ", victimPhoneNumber='" + getVictimPhoneNumber() + "'" +
+            ", victimEmail='" + getVictimEmail() + "'" +
             ", parentName='" + getParentName() + "'" +
             ", parentPhoneNumber='" + getParentPhoneNumber() + "'" +
+            ", parentEmail='" + getParentEmail() + "'" +
             ", dateOfBirth='" + getDateOfBirth() + "'" +
-            ", phoneNumber='" + getPhoneNumber() + "'" +
             ", height='" + getHeight() + "'" +
             ", weight='" + getWeight() + "'" +
             ", eyeColor='" + getEyeColor() + "'" +
             ", demographic='" + getDemographic() + "'" +
             ", lastKnownLocation='" + getLastKnownLocation() + "'" +
-            ", timeOfLastSeen='" + getTimeOfLastSeen() + "'" +
+            ", lastSeen='" + getLastSeen() + "'" +
             ", serviceProvider='" + getServiceProvider() + "'" +
-            ", masterAccountNumber='" + getMasterAccountNumber() + "'" +
+            ", serviceProviderAccountNumber='" + getServiceProviderAccountNumber() + "'" +
             ", complaintNumber='" + getComplaintNumber() + "'" +
             ", reportNumber='" + getReportNumber() + "'" +
+            ", investigatorName='" + getInvestigatorName() + "'" +
             ", investigatorEmail='" + getInvestigatorEmail() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
+            ", photos='" + getPhotos() + "'" +
+            ", additionalInformation='" + getAdditionalInformation() + "'" +
             "}";
     }
 }

@@ -1,41 +1,33 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "com.seniorproject.mims",
-      "nativeLanguage": "en"
+      "packageName": "com.seniorproject.mims"
     },
     "jhipsterVersion": "4.9.0",
-    "baseName": "MIMS",
+    "baseName": "mims",
     "packageName": "com.seniorproject.mims",
     "packageFolder": "com/seniorproject/mims",
     "serverPort": "8080",
     "authenticationType": "jwt",
-    "hibernateCache": "hazelcast",
+    "hibernateCache": "ehcache",
     "clusteredHttpSession": false,
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
     "prodDatabaseType": "postgresql",
-    "searchEngine": "elasticsearch",
+    "searchEngine": false,
     "messageBroker": false,
-    "serviceDiscoveryType": "eureka",
+    "serviceDiscoveryType": false,
     "buildTool": "maven",
     "enableSocialSignIn": false,
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "c17e504b61b8eb73d55e0b16c7105cf69cc4f988",
+    "jwtSecretKey": "15638aa021d99bb4aef963c48ced0e7c3592725e",
     "clientFramework": "angularX",
-    "useSass": true,
+    "useSass": false,
     "clientPackageManager": "yarn",
-    "applicationType": "gateway",
-    "testFrameworks": [
-      "gatling",
-      "cucumber"
-    ],
+    "applicationType": "monolith",
+    "testFrameworks": [],
     "jhiPrefix": "jhi",
-    "enableTranslation": true,
-    "nativeLanguage": "en",
-    "languages": [
-      "en"
-    ]
+    "enableTranslation": false
   }
 }

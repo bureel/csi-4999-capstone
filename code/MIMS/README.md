@@ -1,9 +1,5 @@
-# MIMS
+# mims
 This application was generated using JHipster 4.9.0, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.9.0](http://www.jhipster.tech/documentation-archive/v4.9.0).
-
-This is a "gateway" application intended to be part of a microservice architecture, please refer to the [Doing microservices with JHipster][] page of the documentation for more information.
-
-This application is configured for Service Discovery and Configuration with the JHipster-Registry. On launch, it will refuse to start if it is not able to connect to the JHipster-Registry at [http://localhost:8761](http://localhost:8761). For more information, read our documentation on [Service Discovery and Configuration with the JHipster-Registry][].
 
 ## Development
 
@@ -97,7 +93,7 @@ will generate few files:
 
 ## Building for production
 
-To optimize the MIMS application for production, run:
+To optimize the mims application for production, run:
 
     ./mvnw -Pprod clean package
 
@@ -123,11 +119,6 @@ Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in
     yarn test
 
 
-### Other tests
-
-Performance tests are run by [Gatling][] and written in Scala. They're located in [src/test/gatling](src/test/gatling) and can be run with:
-
-    ./mvnw gatling:execute
 
 For more information, refer to the [Running tests page][].
 
@@ -159,15 +150,14 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 
 [JHipster Homepage and latest documentation]: http://www.jhipster.tech
 [JHipster 4.9.0 archive]: http://www.jhipster.tech/documentation-archive/v4.9.0
-[Doing microservices with JHipster]: http://www.jhipster.tech/documentation-archive/v4.9.0/microservices-architecture/
+
 [Using JHipster in development]: http://www.jhipster.tech/documentation-archive/v4.9.0/development/
-[Service Discovery and Configuration with the JHipster-Registry]: http://www.jhipster.tech/documentation-archive/v4.9.0/microservices-architecture/#jhipster-registry
 [Using Docker and Docker-Compose]: http://www.jhipster.tech/documentation-archive/v4.9.0/docker-compose
 [Using JHipster in production]: http://www.jhipster.tech/documentation-archive/v4.9.0/production/
 [Running tests page]: http://www.jhipster.tech/documentation-archive/v4.9.0/running-tests/
 [Setting up Continuous Integration]: http://www.jhipster.tech/documentation-archive/v4.9.0/setting-up-ci/
 
-[Gatling]: http://gatling.io/
+
 [Node.js]: https://nodejs.org/
 [Yarn]: https://yarnpkg.org/
 [Webpack]: https://webpack.github.io/

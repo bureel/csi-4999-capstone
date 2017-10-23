@@ -2,10 +2,10 @@ package com.seniorproject.mims.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
@@ -15,7 +15,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "report")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "report")
 public class Report implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,8 +24,20 @@ public class Report implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "resolution")
+    private String resolution;
+
     @Column(name = "victim_name")
     private String victimName;
+
+    @Column(name = "victim_phone_number")
+    private String victimPhoneNumber;
+
+    @Column(name = "victim_email")
+    private String victimEmail;
 
     @Column(name = "parent_name")
     private String parentName;
@@ -34,17 +45,17 @@ public class Report implements Serializable {
     @Column(name = "parent_phone_number")
     private String parentPhoneNumber;
 
-    @Column(name = "date_of_birth")
-    private ZonedDateTime dateOfBirth;
+    @Column(name = "parent_email")
+    private String parentEmail;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
+    @Column(name = "date_of_birth")
+    private LocalDate dateOfBirth;
 
     @Column(name = "height")
     private String height;
 
     @Column(name = "weight")
-    private Long weight;
+    private Double weight;
 
     @Column(name = "eye_color")
     private String eyeColor;
@@ -55,14 +66,14 @@ public class Report implements Serializable {
     @Column(name = "last_known_location")
     private String lastKnownLocation;
 
-    @Column(name = "time_of_last_seen")
-    private ZonedDateTime timeOfLastSeen;
+    @Column(name = "last_seen")
+    private ZonedDateTime lastSeen;
 
     @Column(name = "service_provider")
     private String serviceProvider;
 
-    @Column(name = "master_account_number")
-    private String masterAccountNumber;
+    @Column(name = "service_provider_account_number")
+    private String serviceProviderAccountNumber;
 
     @Column(name = "complaint_number")
     private String complaintNumber;
@@ -70,8 +81,27 @@ public class Report implements Serializable {
     @Column(name = "report_number")
     private String reportNumber;
 
+    @Column(name = "investigator_name")
+    private String investigatorName;
+
     @Column(name = "investigator_email")
     private String investigatorEmail;
+
+    @Column(name = "created_at")
+    private ZonedDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private ZonedDateTime updatedAt;
+
+    @Lob
+    @Column(name = "photos")
+    private byte[] photos;
+
+    @Column(name = "photos_content_type")
+    private String photosContentType;
+
+    @Column(name = "additional_information")
+    private String additionalInformation;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -80,6 +110,32 @@ public class Report implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Report status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getResolution() {
+        return resolution;
+    }
+
+    public Report resolution(String resolution) {
+        this.resolution = resolution;
+        return this;
+    }
+
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
     }
 
     public String getVictimName() {
@@ -93,6 +149,32 @@ public class Report implements Serializable {
 
     public void setVictimName(String victimName) {
         this.victimName = victimName;
+    }
+
+    public String getVictimPhoneNumber() {
+        return victimPhoneNumber;
+    }
+
+    public Report victimPhoneNumber(String victimPhoneNumber) {
+        this.victimPhoneNumber = victimPhoneNumber;
+        return this;
+    }
+
+    public void setVictimPhoneNumber(String victimPhoneNumber) {
+        this.victimPhoneNumber = victimPhoneNumber;
+    }
+
+    public String getVictimEmail() {
+        return victimEmail;
+    }
+
+    public Report victimEmail(String victimEmail) {
+        this.victimEmail = victimEmail;
+        return this;
+    }
+
+    public void setVictimEmail(String victimEmail) {
+        this.victimEmail = victimEmail;
     }
 
     public String getParentName() {
@@ -121,30 +203,30 @@ public class Report implements Serializable {
         this.parentPhoneNumber = parentPhoneNumber;
     }
 
-    public ZonedDateTime getDateOfBirth() {
+    public String getParentEmail() {
+        return parentEmail;
+    }
+
+    public Report parentEmail(String parentEmail) {
+        this.parentEmail = parentEmail;
+        return this;
+    }
+
+    public void setParentEmail(String parentEmail) {
+        this.parentEmail = parentEmail;
+    }
+
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public Report dateOfBirth(ZonedDateTime dateOfBirth) {
+    public Report dateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         return this;
     }
 
-    public void setDateOfBirth(ZonedDateTime dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public Report phoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public String getHeight() {
@@ -160,16 +242,16 @@ public class Report implements Serializable {
         this.height = height;
     }
 
-    public Long getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public Report weight(Long weight) {
+    public Report weight(Double weight) {
         this.weight = weight;
         return this;
     }
 
-    public void setWeight(Long weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
@@ -212,17 +294,17 @@ public class Report implements Serializable {
         this.lastKnownLocation = lastKnownLocation;
     }
 
-    public ZonedDateTime getTimeOfLastSeen() {
-        return timeOfLastSeen;
+    public ZonedDateTime getLastSeen() {
+        return lastSeen;
     }
 
-    public Report timeOfLastSeen(ZonedDateTime timeOfLastSeen) {
-        this.timeOfLastSeen = timeOfLastSeen;
+    public Report lastSeen(ZonedDateTime lastSeen) {
+        this.lastSeen = lastSeen;
         return this;
     }
 
-    public void setTimeOfLastSeen(ZonedDateTime timeOfLastSeen) {
-        this.timeOfLastSeen = timeOfLastSeen;
+    public void setLastSeen(ZonedDateTime lastSeen) {
+        this.lastSeen = lastSeen;
     }
 
     public String getServiceProvider() {
@@ -238,17 +320,17 @@ public class Report implements Serializable {
         this.serviceProvider = serviceProvider;
     }
 
-    public String getMasterAccountNumber() {
-        return masterAccountNumber;
+    public String getServiceProviderAccountNumber() {
+        return serviceProviderAccountNumber;
     }
 
-    public Report masterAccountNumber(String masterAccountNumber) {
-        this.masterAccountNumber = masterAccountNumber;
+    public Report serviceProviderAccountNumber(String serviceProviderAccountNumber) {
+        this.serviceProviderAccountNumber = serviceProviderAccountNumber;
         return this;
     }
 
-    public void setMasterAccountNumber(String masterAccountNumber) {
-        this.masterAccountNumber = masterAccountNumber;
+    public void setServiceProviderAccountNumber(String serviceProviderAccountNumber) {
+        this.serviceProviderAccountNumber = serviceProviderAccountNumber;
     }
 
     public String getComplaintNumber() {
@@ -277,6 +359,19 @@ public class Report implements Serializable {
         this.reportNumber = reportNumber;
     }
 
+    public String getInvestigatorName() {
+        return investigatorName;
+    }
+
+    public Report investigatorName(String investigatorName) {
+        this.investigatorName = investigatorName;
+        return this;
+    }
+
+    public void setInvestigatorName(String investigatorName) {
+        this.investigatorName = investigatorName;
+    }
+
     public String getInvestigatorEmail() {
         return investigatorEmail;
     }
@@ -288,6 +383,71 @@ public class Report implements Serializable {
 
     public void setInvestigatorEmail(String investigatorEmail) {
         this.investigatorEmail = investigatorEmail;
+    }
+
+    public ZonedDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public Report createdAt(ZonedDateTime createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    public void setCreatedAt(ZonedDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public ZonedDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public Report updatedAt(ZonedDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
+    public void setUpdatedAt(ZonedDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public byte[] getPhotos() {
+        return photos;
+    }
+
+    public Report photos(byte[] photos) {
+        this.photos = photos;
+        return this;
+    }
+
+    public void setPhotos(byte[] photos) {
+        this.photos = photos;
+    }
+
+    public String getPhotosContentType() {
+        return photosContentType;
+    }
+
+    public Report photosContentType(String photosContentType) {
+        this.photosContentType = photosContentType;
+        return this;
+    }
+
+    public void setPhotosContentType(String photosContentType) {
+        this.photosContentType = photosContentType;
+    }
+
+    public String getAdditionalInformation() {
+        return additionalInformation;
+    }
+
+    public Report additionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
+        return this;
+    }
+
+    public void setAdditionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -315,22 +475,32 @@ public class Report implements Serializable {
     public String toString() {
         return "Report{" +
             "id=" + getId() +
+            ", status='" + getStatus() + "'" +
+            ", resolution='" + getResolution() + "'" +
             ", victimName='" + getVictimName() + "'" +
+            ", victimPhoneNumber='" + getVictimPhoneNumber() + "'" +
+            ", victimEmail='" + getVictimEmail() + "'" +
             ", parentName='" + getParentName() + "'" +
             ", parentPhoneNumber='" + getParentPhoneNumber() + "'" +
+            ", parentEmail='" + getParentEmail() + "'" +
             ", dateOfBirth='" + getDateOfBirth() + "'" +
-            ", phoneNumber='" + getPhoneNumber() + "'" +
             ", height='" + getHeight() + "'" +
             ", weight='" + getWeight() + "'" +
             ", eyeColor='" + getEyeColor() + "'" +
             ", demographic='" + getDemographic() + "'" +
             ", lastKnownLocation='" + getLastKnownLocation() + "'" +
-            ", timeOfLastSeen='" + getTimeOfLastSeen() + "'" +
+            ", lastSeen='" + getLastSeen() + "'" +
             ", serviceProvider='" + getServiceProvider() + "'" +
-            ", masterAccountNumber='" + getMasterAccountNumber() + "'" +
+            ", serviceProviderAccountNumber='" + getServiceProviderAccountNumber() + "'" +
             ", complaintNumber='" + getComplaintNumber() + "'" +
             ", reportNumber='" + getReportNumber() + "'" +
+            ", investigatorName='" + getInvestigatorName() + "'" +
             ", investigatorEmail='" + getInvestigatorEmail() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
+            ", photos='" + getPhotos() + "'" +
+            ", photosContentType='" + photosContentType + "'" +
+            ", additionalInformation='" + getAdditionalInformation() + "'" +
             "}";
     }
 }

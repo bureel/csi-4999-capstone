@@ -12,6 +12,8 @@ import { MimsEntityModule } from './entities/entity.module';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 
+import { MimsAppCreateReportModule } from './create-report/create-report.module';
+import { MimsAppReportPageModule } from './report-page/report-page.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
 import {
@@ -21,7 +23,6 @@ import {
     FooterComponent,
     ProfileService,
     PageRibbonComponent,
-    ActiveMenuDirective,
     ErrorComponent
 } from './layouts';
 
@@ -35,6 +36,8 @@ import {
         MimsAdminModule,
         MimsAccountModule,
         MimsEntityModule,
+        MimsAppCreateReportModule,
+        MimsAppReportPageModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -42,7 +45,6 @@ import {
         NavbarComponent,
         ErrorComponent,
         PageRibbonComponent,
-        ActiveMenuDirective,
         FooterComponent
     ],
     providers: [

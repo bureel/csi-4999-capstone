@@ -8,7 +8,6 @@
         "outDir": "target/www/app",
         "assets": [
             "content",
-            "i18n",
             "favicon.ico"
         ],
         "index": "index.html",
@@ -19,8 +18,8 @@
         "prefix": "jhi",
         "mobile": false,
         "styles": [
-            "content/scss/vendor.scss",
-            "content/scss/global.scss"
+            "content/css/vendor.css",
+            "content/css/global.css"
         ],
         "scripts": []
     }],
@@ -37,7 +36,7 @@
         }
     },
     "defaults": {
-        "styleExt": "scss",
+        "styleExt": "css",
         "prefixInterfaces": false,
         "component" : {
             "inlineStyle" : true,

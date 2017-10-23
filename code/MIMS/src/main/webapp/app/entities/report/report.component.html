@@ -1,0 +1,112 @@
+<div>
+    <h2>
+        <span>Reports</span>
+        <button class="btn btn-primary float-right jh-create-entity create-report" [routerLink]="['/', { outlets: { popup: ['report-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Report
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="reports">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span>Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="resolution"><span>Resolution</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="victimName"><span>Victim Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="victimPhoneNumber"><span>Victim Phone Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="victimEmail"><span>Victim Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="parentName"><span>Parent Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="parentPhoneNumber"><span>Parent Phone Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="parentEmail"><span>Parent Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateOfBirth"><span>Date Of Birth</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="height"><span>Height</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="weight"><span>Weight</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="eyeColor"><span>Eye Color</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="demographic"><span>Demographic</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastKnownLocation"><span>Last Known Location</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastSeen"><span>Last Seen</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serviceProvider"><span>Service Provider</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serviceProviderAccountNumber"><span>Service Provider Account Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="complaintNumber"><span>Complaint Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reportNumber"><span>Report Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="investigatorName"><span>Investigator Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="investigatorEmail"><span>Investigator Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createdAt"><span>Created At</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="updatedAt"><span>Updated At</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="photos"><span>Photos</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="additionalInformation"><span>Additional Information</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let report of reports ;trackBy: trackId">
+                <td><a [routerLink]="['../report', report.id ]">{{report.id}}</a></td>
+                <td>{{report.status}}</td>
+                <td>{{report.resolution}}</td>
+                <td>{{report.victimName}}</td>
+                <td>{{report.victimPhoneNumber}}</td>
+                <td>{{report.victimEmail}}</td>
+                <td>{{report.parentName}}</td>
+                <td>{{report.parentPhoneNumber}}</td>
+                <td>{{report.parentEmail}}</td>
+                <td>{{report.dateOfBirth | date:'mediumDate'}}</td>
+                <td>{{report.height}}</td>
+                <td>{{report.weight}}</td>
+                <td>{{report.eyeColor}}</td>
+                <td>{{report.demographic}}</td>
+                <td>{{report.lastKnownLocation}}</td>
+                <td>{{report.lastSeen | date:'medium'}}</td>
+                <td>{{report.serviceProvider}}</td>
+                <td>{{report.serviceProviderAccountNumber}}</td>
+                <td>{{report.complaintNumber}}</td>
+                <td>{{report.reportNumber}}</td>
+                <td>{{report.investigatorName}}</td>
+                <td>{{report.investigatorEmail}}</td>
+                <td>{{report.createdAt | date:'medium'}}</td>
+                <td>{{report.updatedAt | date:'medium'}}</td>
+                <td>{{report.photos}}</td>
+                <td>{{report.additionalInformation}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../report', report.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'report/'+ report.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'report/'+ report.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="reports && reports.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

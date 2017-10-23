@@ -13,23 +13,17 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-eureka:
-    client:
-        enabled: true
-    instance:
-        appname: MIMS
-        instanceId: MIMS:${spring.application.instance-id:${random.value}}
 
 spring:
     application:
-        name: MIMS
+        name: mims
     jackson:
         serialization.write_dates_as_timestamps: false
     cache:
         type: none
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:MIMS;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:mem:mims;DB_CLOSE_DELAY=-1
         name:
         username:
         password:
@@ -49,14 +43,6 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.hbm2ddl.auto: validate
-    data:
-        elasticsearch:
-            cluster-name:
-            cluster-nodes:
-            properties:
-                path:
-                    logs: target/elasticsearch/log
-                    data: target/elasticsearch/data
     mail:
         host: localhost
     messages:
@@ -106,7 +92,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: c17e504b61b8eb73d55e0b16c7105cf69cc4f988
+                secret: 15638aa021d99bb4aef963c48ced0e7c3592725e
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

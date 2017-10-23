@@ -3,7 +3,23 @@
     "relationships": [],
     "fields": [
         {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "resolution",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "victimName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "victimPhoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "victimEmail",
             "fieldType": "String"
         },
         {
@@ -15,12 +31,12 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "dateOfBirth",
-            "fieldType": "ZonedDateTime"
+            "fieldName": "parentEmail",
+            "fieldType": "String"
         },
         {
-            "fieldName": "phoneNumber",
-            "fieldType": "String"
+            "fieldName": "dateOfBirth",
+            "fieldType": "LocalDate"
         },
         {
             "fieldName": "height",
@@ -28,7 +44,7 @@
         },
         {
             "fieldName": "weight",
-            "fieldType": "Long"
+            "fieldType": "Double"
         },
         {
             "fieldName": "eyeColor",
@@ -43,7 +59,7 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "timeOfLastSeen",
+            "fieldName": "lastSeen",
             "fieldType": "ZonedDateTime"
         },
         {
@@ -51,7 +67,7 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "masterAccountNumber",
+            "fieldName": "serviceProviderAccountNumber",
             "fieldType": "String"
         },
         {
@@ -63,14 +79,34 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "investigatorName",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "investigatorEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updatedAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "photos",
+            "fieldType": "byte[]"
+        },
+        {
+            "fieldName": "additionalInformation",
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20171010033709",
-    "entityTableName": "report",
+    "changelogDate": "20171017215150",
     "dto": "mapstruct",
-    "pagination": "pagination",
-    "service": "serviceImpl",
-    "angularJSSuffix": "mySuffix"
+    "service": "no",
+    "entityTableName": "report",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
 }
