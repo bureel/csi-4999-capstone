@@ -46,6 +46,12 @@ export class CreateReportComponent implements OnInit {
       }
   }
 
+  back() {
+    if (this.checkedIndex > 1) {
+      this.checkedIndex--;
+    }
+}
+
   byteSize(field) {
       return this.dataUtils.byteSize(field);
   }

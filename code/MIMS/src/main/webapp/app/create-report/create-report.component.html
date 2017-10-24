@@ -5,7 +5,7 @@
     <h1 class="text-capitalize text-center">Create Report</h1>
     <hr/>
 
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+    <form name="editForm" role="form" novalidate #editForm="ngForm">
       <div class="form-group">
       
         <input id="one" type="radio" name="stage" [checked]="checkedIndex == 1" (click)="checkedIndex = 1" />
@@ -75,12 +75,13 @@
             <input id="reportNumber" name="reportNumber" class="form-control" [(ngModel)]="report.reportNumber" type="number" placeholder="Report number" pattern="[0-9]+" #reportNumber="ngModel" required/><br>            
             <input id="investigatorName" name="investigatorName" class="form-control" [(ngModel)]="report.investigatorName" type="text" placeholder="Investigator name" #investigatorName="ngModel" required/><br>
             <input id="investigatorEmail" name="investigatorEmail" class="form-control"  [(ngModel)]="report.investigatorEmail" type="email" placeholder="Investigator email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #investigatorEmail="ngModel" required/><br>
-            <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-              <span class="fa fa-save"></span>&nbsp;<span>Save</span>
           </button>
           </div>
         </div>
+        <span [hidden]="checkedIndex === 1"><button (click)="back()" class="btn btn-primary">Back</button>&nbsp;&nbsp;</span>
         <button (click)="advance()" class="btn btn-primary" [hidden]="checkedIndex > 6">Next</button>
+        <button type="submit" [hidden]="6 >= checkedIndex" (click)="save()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+          <span class="fa fa-save"></span>&nbsp;<span>Save</span>
       </form>
   </div>
   <div class="col-md-1"></div>
