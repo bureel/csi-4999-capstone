@@ -8,6 +8,8 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { Report } from '../entities/report/report.model'
 import { ReportService } from '../entities/report/report.service';
+import { VictimPhoto } from '../entities/victim-photo/victim-photo.model'
+import { VictimPhotoService } from '../entities/victim-photo/victim-photo.service'
 
 @Component({
   selector: 'jhi-create-report',
@@ -21,6 +23,8 @@ export class CreateReportComponent implements OnInit {
   message: string;
   step: number;
   report: Report;
+  savedReport: Report;
+  victimPhotos: VictimPhoto[];
   isSaving: boolean;
   dateOfBirthDp: any;
   checkedIndex: number;
@@ -29,6 +33,7 @@ export class CreateReportComponent implements OnInit {
       private dataUtils: JhiDataUtils,
       private jhiAlertService: JhiAlertService,
       private reportService: ReportService,
+      private victimPhotoService: VictimPhotoService,
       private eventManager: JhiEventManager,
       private router: Router
   ) {
@@ -36,6 +41,7 @@ export class CreateReportComponent implements OnInit {
 
   ngOnInit() {
       this.report = new Report();
+      this.victimPhotos = [];
       this.isSaving = false;
       this.checkedIndex = 1;
   }
@@ -64,6 +70,19 @@ export class CreateReportComponent implements OnInit {
       this.dataUtils.setFileData(event, entity, field, isImage);
   }
 
+  setPhotosData(fileInput) {
+    for (let i = 0; i < fileInput.target.files.length; i++) {
+        if (!this.victimPhotos[i]) {
+            this.victimPhotos[i] = new VictimPhoto()
+        }
+        const entity = this.victimPhotos[i];
+        this.dataUtils.toBase64(fileInput.target.files[i], function(base64Data) {
+            entity['photo'] = base64Data;
+            entity['photo' + 'ContentType'] = fileInput.target.files[i].type;
+        });
+    }
+}
+
   save() {
       this.isSaving = true;
       if (this.report.id !== undefined) {
@@ -80,11 +99,32 @@ export class CreateReportComponent implements OnInit {
           this.onSaveSuccess(res), (res: Response) => this.onSaveError());
   }
 
+  private subscribeToPhotoSaveResponse(result: Observable<VictimPhoto>) {
+    result.subscribe((res: VictimPhoto) =>
+        this.onPhotoSaveSuccess(res), (res: Response) => this.onSaveError());
+    }
+
   private onSaveSuccess(result: Report) {
       this.eventManager.broadcast({ name: 'reportListModification', content: 'OK'});
-      this.isSaving = false;
-      this.router.navigate(['/family-home']);
+      console.log(result);
+      for (let i = 0; i < this.victimPhotos.length; i++) {
+        this.victimPhotos[i].report = result;
+        if (this.victimPhotos[i].id !== undefined) {
+          this.subscribeToPhotoSaveResponse(
+              this.victimPhotoService.update(this.victimPhotos[i]));
+      } else {
+          this.subscribeToPhotoSaveResponse(
+              this.victimPhotoService.create(this.victimPhotos[i]));
+      }
   }
+      this.isSaving = false;
+  }
+
+  private onPhotoSaveSuccess(result: VictimPhoto) {
+    this.eventManager.broadcast({ name: 'victimPhotoListModification', content: 'OK'});
+    this.isSaving = false;
+    this.router.navigate(['/family-home']);
+}
 
   private onSaveError() {
       this.isSaving = false;

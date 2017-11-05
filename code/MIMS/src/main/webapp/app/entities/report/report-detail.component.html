@@ -98,7 +98,12 @@
         </dd>
         <dt><span>Photos</span></dt>
         <dd>
-            <span>{{report.photos}}</span>
+            <div *ngIf="report.photos">
+                <a (click)="openFile(report.photosContentType, report.photos)">
+                    <img [src]="'data:' + report.photosContentType + ';base64,' + report.photos" style="max-width: 100%;" alt="report image"/>
+                </a>
+                {{report.photosContentType}}, {{byteSize(report.photos)}}
+            </div>
         </dd>
         <dt><span>Additional Information</span></dt>
         <dd>

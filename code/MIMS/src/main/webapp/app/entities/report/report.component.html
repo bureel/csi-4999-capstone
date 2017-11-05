@@ -71,7 +71,9 @@
                 <td>{{report.investigatorEmail}}</td>
                 <td>{{report.createdAt | date:'medium'}}</td>
                 <td>{{report.updatedAt | date:'medium'}}</td>
-                <td>{{report.photos}}</td>
+                <a *ngIf="report.photos" (click)="openFile(report.photosContentType, report.photos)">
+                    <img [src]="'data:' + report.photosContentType + ';base64,' + report.photos" style="max-height: 30px;" alt="report image"/>
+                </a>
                 <td>{{report.additionalInformation}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

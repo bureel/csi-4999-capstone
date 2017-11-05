@@ -49,7 +49,10 @@
 
           <div data-panel="three">
             <h4>Pictures</h4>
-            <input type="file" multiple id="file_photos" (change)="setFileData($event, report, 'photos', false)" jhiTranslate="entity.action.addblob"/><br><br>
+            Main photo<br>
+            <input type="file" id="file_photos" (change)="setFileData($event, report, 'photos', false)" jhiTranslate="entity.action.addblob" accept="image/*"/><br><br>
+            Additional photos<br>
+            <input type="file" id="file_multiple_photos" (change)="setPhotosData($event)" jhiTranslate="entity.action.addblob" multiple accept="image/*"/><br><br>
           </div>
 
           <div data-panel="four">

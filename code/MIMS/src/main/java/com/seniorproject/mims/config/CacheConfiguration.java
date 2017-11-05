@@ -42,6 +42,7 @@ public class CacheConfiguration {
             cm.createCache(com.seniorproject.mims.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.seniorproject.mims.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.seniorproject.mims.domain.Report.class.getName(), jcacheConfiguration);
+            cm.createCache(com.seniorproject.mims.domain.VictimPhoto.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
