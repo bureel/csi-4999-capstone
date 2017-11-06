@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { MimsSharedModule } from '../../shared';
+import { MimsAdminModule } from '../../admin/admin.module';
 import {
     ReportService,
     ReportPopupService,
@@ -24,6 +25,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         MimsSharedModule,
+        MimsAdminModule,
         RouterModule.forRoot(ENTITY_STATES, { useHash: true })
     ],
     declarations: [

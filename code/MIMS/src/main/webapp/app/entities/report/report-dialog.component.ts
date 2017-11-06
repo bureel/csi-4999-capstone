@@ -9,6 +9,8 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { Report } from './report.model';
 import { ReportPopupService } from './report-popup.service';
 import { ReportService } from './report.service';
+import { User, UserService } from '../../shared';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-report-dialog',
@@ -18,6 +20,8 @@ export class ReportDialogComponent implements OnInit {
 
     report: Report;
     isSaving: boolean;
+
+    users: User[];
     dateOfBirthDp: any;
 
     constructor(
@@ -25,12 +29,15 @@ export class ReportDialogComponent implements OnInit {
         private dataUtils: JhiDataUtils,
         private jhiAlertService: JhiAlertService,
         private reportService: ReportService,
+        private userService: UserService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.userService.query()
+            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     byteSize(field) {
@@ -77,6 +84,10 @@ export class ReportDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackUserById(index: number, item: User) {
+        return item.id;
     }
 }
 

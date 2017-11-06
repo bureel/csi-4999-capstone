@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { MimsSharedCommonModule } from '../shared';
 
-import { REPORT_PAGE_ROUTE, ReportPageComponent } from './';
+import { REPORT_PAGE_ROUTE, ReportPageComponent, ReportPageResolvePagingParams } from './';
 
 @NgModule({
     imports: [
@@ -16,6 +16,7 @@ import { REPORT_PAGE_ROUTE, ReportPageComponent } from './';
     entryComponents: [
     ],
     providers: [
+      ReportPageResolvePagingParams,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

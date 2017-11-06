@@ -4,8 +4,10 @@ import com.codahale.metrics.annotation.Timed;
 import com.seniorproject.mims.domain.Report;
 
 import com.seniorproject.mims.repository.ReportRepository;
+import com.seniorproject.mims.repository.UserRepository;
 import com.seniorproject.mims.web.rest.util.HeaderUtil;
 import com.seniorproject.mims.web.rest.util.PaginationUtil;
+import com.seniorproject.mims.security.SecurityUtils;
 import com.seniorproject.mims.service.dto.ReportDTO;
 import com.seniorproject.mims.service.mapper.ReportMapper;
 import io.swagger.annotations.ApiParam;
@@ -40,8 +42,11 @@ public class ReportResource {
 
     private final ReportMapper reportMapper;
 
-    public ReportResource(ReportRepository reportRepository, ReportMapper reportMapper) {
+    private final UserRepository userRepository;
+
+    public ReportResource(ReportRepository reportRepository, UserRepository userRepository, ReportMapper reportMapper) {
         this.reportRepository = reportRepository;
+        this.userRepository = userRepository;
         this.reportMapper = reportMapper;
     }
 
@@ -60,6 +65,7 @@ public class ReportResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new report cannot already have an ID")).body(null);
         }
         Report report = reportMapper.toEntity(reportDTO);
+        report.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get());
         report = reportRepository.save(report);
         ReportDTO result = reportMapper.toDto(report);
         return ResponseEntity.created(new URI("/api/reports/" + result.getId()))
@@ -103,6 +109,21 @@ public class ReportResource {
         log.debug("REST request to get a page of Reports");
         Page<Report> page = reportRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/reports");
+        return new ResponseEntity<>(reportMapper.toDto(page.getContent()), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /reports : get all reports for current user.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of reports in body
+     */
+    @GetMapping("/reports/user")
+    @Timed
+    public ResponseEntity<List<ReportDTO>> getReportsForUser(@ApiParam Pageable pageable) {
+        log.debug("REST request to get a page of Reports for user");
+        Page<Report> page = reportRepository.findByUserIsCurrentUser(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/reports/user");
         return new ResponseEntity<>(reportMapper.toDto(page.getContent()), headers, HttpStatus.OK);
     }
 

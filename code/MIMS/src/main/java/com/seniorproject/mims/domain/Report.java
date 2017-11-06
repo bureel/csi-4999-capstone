@@ -103,6 +103,9 @@ public class Report implements Serializable {
     @Column(name = "additional_information")
     private String additionalInformation;
 
+    @ManyToOne
+    private User user;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -448,6 +451,19 @@ public class Report implements Serializable {
 
     public void setAdditionalInformation(String additionalInformation) {
         this.additionalInformation = additionalInformation;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Report user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
