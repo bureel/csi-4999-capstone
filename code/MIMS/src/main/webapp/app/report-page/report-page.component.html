@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <h1 class="text-capitalize text-center">Reports</h1>
+    <hr/>
+    <div *ngFor="let report of reports">
+      <a [routerLink]="['../report', report.id ]">{{report.victimName}}</a><br>
+    </div><br><br>
+    <a routerLink="/create-report"><button class="btn btn-primary">Create Report</button></a>
+  </div>
+  <div class="col-md-1"></div>
+</div>

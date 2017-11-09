@@ -1,0 +1,180 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myReportLabel">Create or edit a Report</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!report.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="report.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                [(ngModel)]="report.status"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_resolution">Resolution</label>
+            <input type="text" class="form-control" name="resolution" id="field_resolution"
+                [(ngModel)]="report.resolution"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_victimName">Victim Name</label>
+            <input type="text" class="form-control" name="victimName" id="field_victimName"
+                [(ngModel)]="report.victimName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_victimPhoneNumber">Victim Phone Number</label>
+            <input type="text" class="form-control" name="victimPhoneNumber" id="field_victimPhoneNumber"
+                [(ngModel)]="report.victimPhoneNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_victimEmail">Victim Email</label>
+            <input type="text" class="form-control" name="victimEmail" id="field_victimEmail"
+                [(ngModel)]="report.victimEmail"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_parentName">Parent Name</label>
+            <input type="text" class="form-control" name="parentName" id="field_parentName"
+                [(ngModel)]="report.parentName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_parentPhoneNumber">Parent Phone Number</label>
+            <input type="text" class="form-control" name="parentPhoneNumber" id="field_parentPhoneNumber"
+                [(ngModel)]="report.parentPhoneNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_parentEmail">Parent Email</label>
+            <input type="text" class="form-control" name="parentEmail" id="field_parentEmail"
+                [(ngModel)]="report.parentEmail"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dateOfBirth">Date Of Birth</label>
+            <div class="input-group">
+                <input id="field_dateOfBirth" type="text" class="form-control" name="dateOfBirth" ngbDatepicker  #dateOfBirthDp="ngbDatepicker" [(ngModel)]="report.dateOfBirth"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="dateOfBirthDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_height">Height</label>
+            <input type="text" class="form-control" name="height" id="field_height"
+                [(ngModel)]="report.height"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_weight">Weight</label>
+            <input type="number" class="form-control" name="weight" id="field_weight"
+                [(ngModel)]="report.weight"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_eyeColor">Eye Color</label>
+            <input type="text" class="form-control" name="eyeColor" id="field_eyeColor"
+                [(ngModel)]="report.eyeColor"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_demographic">Demographic</label>
+            <input type="text" class="form-control" name="demographic" id="field_demographic"
+                [(ngModel)]="report.demographic"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastKnownLocation">Last Known Location</label>
+            <input type="text" class="form-control" name="lastKnownLocation" id="field_lastKnownLocation"
+                [(ngModel)]="report.lastKnownLocation"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastSeen">Last Seen</label>
+            <div class="d-flex">
+                <input id="field_lastSeen" type="datetime-local" class="form-control" name="lastSeen" [(ngModel)]="report.lastSeen"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_serviceProvider">Service Provider</label>
+            <input type="text" class="form-control" name="serviceProvider" id="field_serviceProvider"
+                [(ngModel)]="report.serviceProvider"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_serviceProviderAccountNumber">Service Provider Account Number</label>
+            <input type="text" class="form-control" name="serviceProviderAccountNumber" id="field_serviceProviderAccountNumber"
+                [(ngModel)]="report.serviceProviderAccountNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_complaintNumber">Complaint Number</label>
+            <input type="text" class="form-control" name="complaintNumber" id="field_complaintNumber"
+                [(ngModel)]="report.complaintNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_reportNumber">Report Number</label>
+            <input type="text" class="form-control" name="reportNumber" id="field_reportNumber"
+                [(ngModel)]="report.reportNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_investigatorName">Investigator Name</label>
+            <input type="text" class="form-control" name="investigatorName" id="field_investigatorName"
+                [(ngModel)]="report.investigatorName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_investigatorEmail">Investigator Email</label>
+            <input type="text" class="form-control" name="investigatorEmail" id="field_investigatorEmail"
+                [(ngModel)]="report.investigatorEmail"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdAt">Created At</label>
+            <div class="d-flex">
+                <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" [(ngModel)]="report.createdAt"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_updatedAt">Updated At</label>
+            <div class="d-flex">
+                <input id="field_updatedAt" type="datetime-local" class="form-control" name="updatedAt" [(ngModel)]="report.updatedAt"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_photos">Photos</label>
+            <div>
+                <div *ngIf="report.photos" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{report.photosContentType}}, {{byteSize(report.photos)}}</span>
+                    <button type="button" (click)="report.photos=null;report.photosContentType=null;"
+                            class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_photos" (change)="setFileData($event, report, 'photos', false)"/>
+            </div>
+            <input type="hidden" class="form-control" name="photos" id="field_photos"
+                [(ngModel)]="report.photos"  />
+            <input type="hidden" class="form-control" name="photosContentType" id="field_photosContentType"
+                [(ngModel)]="report.photosContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_additionalInformation">Additional Information</label>
+            <input type="text" class="form-control" name="additionalInformation" id="field_additionalInformation"
+                [(ngModel)]="report.additionalInformation"  />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="report.userId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

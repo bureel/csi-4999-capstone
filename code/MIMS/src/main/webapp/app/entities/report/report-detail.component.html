@@ -1,0 +1,127 @@
+
+<div *ngIf="report">
+    <h2><span>Report</span> {{report.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{report.status}}</span>
+        </dd>
+        <dt><span>Resolution</span></dt>
+        <dd>
+            <span>{{report.resolution}}</span>
+        </dd>
+        <dt><span>Victim Name</span></dt>
+        <dd>
+            <span>{{report.victimName}}</span>
+        </dd>
+        <dt><span>Victim Phone Number</span></dt>
+        <dd>
+            <span>{{report.victimPhoneNumber}}</span>
+        </dd>
+        <dt><span>Victim Email</span></dt>
+        <dd>
+            <span>{{report.victimEmail}}</span>
+        </dd>
+        <dt><span>Parent Name</span></dt>
+        <dd>
+            <span>{{report.parentName}}</span>
+        </dd>
+        <dt><span>Parent Phone Number</span></dt>
+        <dd>
+            <span>{{report.parentPhoneNumber}}</span>
+        </dd>
+        <dt><span>Parent Email</span></dt>
+        <dd>
+            <span>{{report.parentEmail}}</span>
+        </dd>
+        <dt><span>Date Of Birth</span></dt>
+        <dd>
+            <span>{{report.dateOfBirth | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Height</span></dt>
+        <dd>
+            <span>{{report.height}}</span>
+        </dd>
+        <dt><span>Weight</span></dt>
+        <dd>
+            <span>{{report.weight}}</span>
+        </dd>
+        <dt><span>Eye Color</span></dt>
+        <dd>
+            <span>{{report.eyeColor}}</span>
+        </dd>
+        <dt><span>Demographic</span></dt>
+        <dd>
+            <span>{{report.demographic}}</span>
+        </dd>
+        <dt><span>Last Known Location</span></dt>
+        <dd>
+            <span>{{report.lastKnownLocation}}</span>
+        </dd>
+        <dt><span>Last Seen</span></dt>
+        <dd>
+            <span>{{report.lastSeen | date:'medium'}}</span>
+        </dd>
+        <dt><span>Service Provider</span></dt>
+        <dd>
+            <span>{{report.serviceProvider}}</span>
+        </dd>
+        <dt><span>Service Provider Account Number</span></dt>
+        <dd>
+            <span>{{report.serviceProviderAccountNumber}}</span>
+        </dd>
+        <dt><span>Complaint Number</span></dt>
+        <dd>
+            <span>{{report.complaintNumber}}</span>
+        </dd>
+        <dt><span>Report Number</span></dt>
+        <dd>
+            <span>{{report.reportNumber}}</span>
+        </dd>
+        <dt><span>Investigator Name</span></dt>
+        <dd>
+            <span>{{report.investigatorName}}</span>
+        </dd>
+        <dt><span>Investigator Email</span></dt>
+        <dd>
+            <span>{{report.investigatorEmail}}</span>
+        </dd>
+        <dt><span>Created At</span></dt>
+        <dd>
+            <span>{{report.createdAt | date:'medium'}}</span>
+        </dd>
+        <dt><span>Updated At</span></dt>
+        <dd>
+            <span>{{report.updatedAt | date:'medium'}}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+            <a *ngIf="report.photos" (click)="openFile(report.photosContentType, report.photos)">
+                <img [src]="'data:' + report.photosContentType + ';base64,' + report.photos" style="max-height: 30px;" alt="report image"/>
+            </a>
+        </dd>
+        <dt><span>Additional Information</span></dt>
+        <dd>
+            <span>{{report.additionalInformation}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{report.userLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'report/'+ report.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
