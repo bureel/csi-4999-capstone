@@ -4,6 +4,7 @@ import com.seniorproject.mims.MimsApp;
 
 import com.seniorproject.mims.domain.Report;
 import com.seniorproject.mims.repository.ReportRepository;
+import com.seniorproject.mims.repository.UserRepository;
 import com.seniorproject.mims.service.dto.ReportDTO;
 import com.seniorproject.mims.service.mapper.ReportMapper;
 import com.seniorproject.mims.web.rest.errors.ExceptionTranslator;
@@ -145,10 +146,12 @@ public class ReportResourceIntTest {
 
     private Report report;
 
+    private UserRepository userRepository;
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ReportResource reportResource = new ReportResource(reportRepository, reportMapper);
+        final ReportResource reportResource = new ReportResource(reportRepository, userRepository, reportMapper);
         this.restReportMockMvc = MockMvcBuilders.standaloneSetup(reportResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
