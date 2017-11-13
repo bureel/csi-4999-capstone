@@ -43,6 +43,7 @@ export class ReportDetailComponent implements OnInit, OnDestroy {
     openFile(contentType, field) {
         return this.dataUtils.openFile(contentType, field);
     }
+
     previousState() {
         window.history.back();
     }
