@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <h1 class="text-capitalize text-center">Tip</h1>
+    <hr/>
+    <div class="Terms" *ngIf="!accepted">
+      By proceeding, you accept that any information you enter into this form may be used by the police to aid in an ongoing investigation.<br><br>
+      <button (click)="accept()" class="btn btn-primary">Continue</button>      
+    </div>
+    <form name="tipForm" *ngIf="accepted" role="form" novalidate #tipForm="ngForm">
+        <div class="form-group">
+          Photo (optional)<br>
+          <input type="file" id="file_photos" (change)="setFileData($event, tip, 'photo', false)" jhiTranslate="entity.action.addblob" accept="image/*"/><br><br>
+          <textarea id="information" name="information" class="form-control" [(ngModel)]="tip.information" type="text" placeholder="Information" #information="ngModel" required></textarea><br><br>
+          <input id="email" name="email" class="form-control"  [(ngModel)]="tip.email" type="email" placeholder="Email (optional)" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel"/><br>
+          <button type="submit" (click)="save()" [disabled]="tipForm.form.invalid || isSaving" class="btn btn-primary">
+              <span class="fa fa-save"></span>&nbsp;<span>Submit</span>
+    </form>
+  </div>
+  </div>
+  <div class="col-md-1"></div>
+</div>

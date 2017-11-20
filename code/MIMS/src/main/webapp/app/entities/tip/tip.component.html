@@ -1,0 +1,71 @@
+<div>
+    <h2>
+        <span>Tips</span>
+        <button class="btn btn-primary float-right jh-create-entity create-tip" [routerLink]="['/', { outlets: { popup: ['tip-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Tip
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="tips">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Information</span></th>
+            <th><span>Photo</span></th>
+            <th><span>Email</span></th>
+            <th><span>Report</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tip of tips ;trackBy: trackId">
+                <td><a [routerLink]="['../tip', tip.id ]">{{tip.id}}</a></td>
+                <td>{{tip.information}}</td>
+                <td>
+                    <a *ngIf="tip.photo" (click)="openFile(tip.photoContentType, tip.photo)">
+                        <img [src]="'data:' + tip.photoContentType + ';base64,' + tip.photo" style="max-height: 30px;" alt="tip image"/>
+                    </a>
+                    <span *ngIf="tip.photo">{{tip.photoContentType}}, {{byteSize(tip.photo)}}</span>
+                </td>
+                <td>{{tip.email}}</td>
+                <td>
+                    <div *ngIf="tip.report">
+                        <a [routerLink]="['../report', tip.report?.id ]" >{{tip.report?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../tip', tip.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'tip/'+ tip.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'tip/'+ tip.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

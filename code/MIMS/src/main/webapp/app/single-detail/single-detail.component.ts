@@ -3,10 +3,14 @@ import { Http, Response } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Report } from '../entities/report/report.model';
+import { VictimPhoto } from '../entities/victim-photo/victim-photo.model';
+
+import { ResponseWrapper } from '../shared';
 
 import { Subscription } from 'rxjs/Rx';
 import { ReportService } from '../entities/report/report.service';
-import { JhiEventManager, JhiDataUtils } from 'ng-jhipster';
+import { VictimPhotoService } from '../entities/victim-photo/victim-photo.service';
+import { JhiEventManager, JhiDataUtils, JhiAlertService } from 'ng-jhipster';
 
 @Component({
   selector: 'jhi-single-detail',
@@ -17,11 +21,14 @@ import { JhiEventManager, JhiDataUtils } from 'ng-jhipster';
 })
 export class SingleDetailComponent implements OnInit, OnDestroy {
 
+  victimPhotos: VictimPhoto[];
   report: Report;
   private subscription: Subscription;
   private eventSubscriber: Subscription;
 
   constructor(
+    private victimPhotoService: VictimPhotoService,
+    private jhiAlertService: JhiAlertService,
     private eventManager: JhiEventManager,
     private dataUtils: JhiDataUtils,
     private reportService: ReportService,
@@ -40,6 +47,12 @@ export class SingleDetailComponent implements OnInit, OnDestroy {
       this.reportService.find(id).subscribe((report) => {
           this.report = report;
       });
+      this.victimPhotoService.query().subscribe(
+        (res: ResponseWrapper) => {
+            this.victimPhotos = res.json;
+        },
+        (res: ResponseWrapper) => this.onError(res.json)
+    );
   }
   byteSize(field) {
       return this.dataUtils.byteSize(field);
@@ -64,5 +77,9 @@ export class SingleDetailComponent implements OnInit, OnDestroy {
           (response) => this.load(this.report.id)
       );
   }
+
+  private onError(error) {
+    this.jhiAlertService.error(error.message, null, null);
+}
 
 }

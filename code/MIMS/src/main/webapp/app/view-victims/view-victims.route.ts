@@ -29,7 +29,6 @@ export const VIEW_VICTIMS_ROUTE: Route = {
     'pagingParams': ReportPageResolvePagingParams
 },
   data: {
-    authorities: ['ROLE_USER'],
     pageTitle: 'view-victims.title'
   },
   canActivate: [UserRouteAccessService]
