@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <h6 class="text-right">{{message}}</h6>
+    <h1 class="text-capitalize text-center">Create Report</h1>
+    <hr/>
+
+    <form name="editForm" role="form" novalidate #editForm="ngForm">
+      <div class="form-group">
+      
+        <input id="one" type="radio" name="stage" [checked]="checkedIndex == 1" (click)="checkedIndex = 1" />
+        <input id="two" type="radio" name="stage" [checked]="checkedIndex == 2" (click)="checkedIndex = 2"/>
+        <input id="three" type="radio" name="stage" [checked]="checkedIndex == 3" (click)="checkedIndex = 3"/>
+        <input id="four" type="radio" name="stage" [checked]="checkedIndex == 4" (click)="checkedIndex = 4"/>
+        <input id="five" type="radio" name="stage" [checked]="checkedIndex == 5" (click)="checkedIndex = 5"/>
+        <input id="six" type="radio" name="stage" [checked]="checkedIndex == 6" (click)="checkedIndex = 6"/>
+        <input id="seven" type="radio" name="stage" [checked]="checkedIndex == 7" (click)="checkedIndex = 7"/>
+      
+        <div class="stages">
+          <label for="one">1</label>
+          <label for="two">2</label>
+          <label for="three">3</label>
+          <label for="four">4</label>
+          <label for="five">5</label>
+          <label for="six">6</label>
+          <label for="seven">7</label>
+        </div>
+      
+        <div class="panels">
+          <div data-panel="one">
+            <h4>Your information</h4>
+            <input id="parentName" name="parentName" class="form-control" [(ngModel)]="report.parentName" type="text" placeholder="Name" #parentName="ngModel" required/><br>
+            <input id="parentPhoneNumber" name="parentPhoneNumber" class="form-control" [(ngModel)]="report.parentPhoneNumber" type="tel" placeholder="Phone number" pattern="[0-9]+" #parentPhoneNumber="ngModel" required/><br>
+            <input id="parentEmail" name="parentEmail" class="form-control"  [(ngModel)]="report.parentEmail" type="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #parentEmail="ngModel" required/><br>
+          </div>
+
+          <div data-panel="two">
+            <h4>Missing person</h4>
+            <input id="victimName" name="victimName" class="form-control" [(ngModel)]="report.victimName" type="text" placeholder="Name" #victimName="ngModel" required/><br>
+            <input id="victimPhoneNumber" name="victimPhoneNumber" class="form-control" [(ngModel)]="report.victimPhoneNumber" type="tel" placeholder="Phone Number" pattern="[0-9]+" #victimPhoneNumber="ngModel" required/><br>
+            <input id="victimEmail" name="victimEmail" class="form-control"  [(ngModel)]="report.victimEmail" type="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #victimEmail="ngModel" required/><br>
+            <input id="field_dateOfBirth" name="victimDateOfBirth" class="form-control" name="dateOfBirth" ngbDatepicker  #dateOfBirthDp="ngbDatepicker" [(ngModel)]="report.dateOfBirth" type="text" placeholder="Date of birth" required/>
+            <button type="button" class="btn btn-secondary" (click)="dateOfBirthDp.toggle()"><i class="fa fa-calendar"></i></button><br><br>
+            <input id="height" name="height" class="form-control"  [(ngModel)]="report.height" type="text" placeholder="Height" #height="ngModel" required/><br>
+            <input id="weight" name="weight" class="form-control"  [(ngModel)]="report.weight" type="number" placeholder="Weight (in pounds)" pattern="[0-9]+" #weight="ngModel" required/><br>
+            <input id="eyeColor" name="eyeColor" class="form-control" [(ngModel)]="report.eyeColor" type="text" placeholder="Eye color" #eyeColor="ngModel" required/><br>
+            <input id="demographic" name="demographic" class="form-control" [(ngModel)]="report.demographic" type="text" placeholder="Demographic" #demographic="ngModel" required/><br>           
+          </div>
+
+          <div data-panel="three">
+            <h4>Pictures</h4>
+            Main photo<br>
+            <input type="file" id="file_photos" (change)="setFileData($event, report, 'photos', false)" jhiTranslate="entity.action.addblob" accept="image/*"/><br><br>
+            Additional photos<br>
+            <input type="file" id="file_multiple_photos" (change)="setPhotosData($event)" jhiTranslate="entity.action.addblob" multiple accept="image/*"/><br><br>
+          </div>
+
+          <div data-panel="four">
+            <h4>Last seen</h4>
+            <input id="lastKnownLocation" name="lastKnownLocation" class="form-control" [(ngModel)]="report.lastKnownLocation" type="text" placeholder="Last known location" #lastKnownLocation="ngModel" required/><br>
+            <input id="field_lastSeen" name="lastSeen" class="form-control" name="lastSeen" [(ngModel)]="report.lastSeen" type="datetime-local" placeholder="Date last seen" #lastSeen="ngModel" required/><br>
+          </div>
+
+          <div data-panel="five">
+            <h4>Missing person's contacts</h4>
+            <input id="serviceProvider" name="serviceProvider" class="form-control" [(ngModel)]="report.serviceProvider" type="text" placeholder="Service provider" #serviceProvider="ngModel" required/><br>
+            <input id="serviceProviderAccountNumber" name="serviceProviderAccountNumber" class="form-control" [(ngModel)]="report.serviceProviderAccountNumber" type="number" placeholder="Service provider account number" pattern="[0-9]+" #serviceProviderAccountNumber="ngModel" required/><br>            
+          </div>
+
+          <div data-panel="six">
+            <h4>Additional information</h4>
+            <textarea id="additionalInformation" name="additionalInformation" class="form-control" [(ngModel)]="report.additionalInformation" type="text" placeholder="Additional information" #additionalInformation="ngModel" required></textarea><br>
+          </div>
+
+          <div data-panel="seven">
+            <h4>Law enforcement information</h4>
+            <input id="complaintNumber" name="complaintNumber" class="form-control" [(ngModel)]="report.complaintNumber" type="number" placeholder="Complaint number" pattern="[0-9]+" #complaintNumber="ngModel" required/><br>            
+            <input id="reportNumber" name="reportNumber" class="form-control" [(ngModel)]="report.reportNumber" type="number" placeholder="Report number" pattern="[0-9]+" #reportNumber="ngModel" required/><br>            
+            <input id="investigatorName" name="investigatorName" class="form-control" [(ngModel)]="report.investigatorName" type="text" placeholder="Investigator name" #investigatorName="ngModel" required/><br>
+            <input id="investigatorEmail" name="investigatorEmail" class="form-control"  [(ngModel)]="report.investigatorEmail" type="email" placeholder="Investigator email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #investigatorEmail="ngModel" required/><br>
+          </button>
+          </div>
+        </div>
+        <span [hidden]="checkedIndex === 1"><button (click)="back()" class="btn btn-primary">Back</button>&nbsp;&nbsp;</span>
+        <button (click)="advance()" class="btn btn-primary" [hidden]="checkedIndex > 6">Next</button>
+        <button type="submit" [hidden]="6 >= checkedIndex" (click)="save()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+          <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+      </form>
+  </div>
+  <div class="col-md-1"></div>
+</div>

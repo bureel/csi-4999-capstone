@@ -1,0 +1,30 @@
+export interface ReportBuilderForm {
+    id?: number;
+    status?: string;
+    resolution?: string;
+    victimName?: string;
+    victimPhoneNumber?: string;
+    victimEmail?: string;
+    parentName?: string;
+    parentPhoneNumber?: string;
+    parentEmail?: string;
+    dateOfBirth?: any;
+    height?: string;
+    weight?: number;
+    eyeColor?: string;
+    demographic?: string;
+    lastKnownLocation?: string;
+    lastSeen?: any;
+    serviceProvider?: string;
+    serviceProviderAccountNumber?: string;
+    complaintNumber?: string;
+    reportNumber?: string;
+    investigatorName?: string;
+    investigatorEmail?: string;
+    createdAt?: any;
+    updatedAt?: any;
+    photosContentType?: string;
+    photos?: any;
+    additionalInformation?: string;
+    userId?: number;
+}

@@ -28,6 +28,8 @@ export class Report implements BaseEntity {
         public updatedAt?: any,
         public photosContentType?: string,
         public photos?: any,
+        public additionalInformation?: string,
+        public userId?: number,
     ) {
     }
 }

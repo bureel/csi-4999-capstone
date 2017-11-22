@@ -1,0 +1,39 @@
+<h1>
+    Victim Personal Information
+</h1>
+
+<form [formGroup]="formGroup">
+    <div class="form-group">
+        <label for="victimName">Victim Name</label>
+        <input id="victimName" formControlName="victimName" name="victimName" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="victimPhoneNumber">Victim Phone Number</label>
+        <input id="victimPhoneNumber" formControlName="victimPhoneNumber" name="victimPhoneNumber" type="tel" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="victimEmail">Victim Email</label>
+        <input id="victimEmail" formControlName="victimEmail" name="victimEmail" type="email" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input id="dateOfBirth" formControlName="dateOfBirth" name="dateOfBirth" type="date" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="height">Height</label>
+        <input id="height" formControlName="height" name="height" type="number" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="weight">Weight</label>
+        <input id="weight" formControlName="weight" name="weight" type="number" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="eyeColor">Eye Color</label>
+        <input id="eyeColor" formControlName="eyeColor" name="eyeColor" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="demographic">Demographic</label>
+        <input id="demographic" formControlName="demographic" name="demographic" type="text" class="form-control">
+    </div>
+</form>
+<button (click)="onSubmit()" class="btn">Next</button>

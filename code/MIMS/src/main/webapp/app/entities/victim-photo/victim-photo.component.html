@@ -1,0 +1,67 @@
+<div>
+    <h2>
+        <span>Victim Photos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-victim-photo" [routerLink]="['/', { outlets: { popup: ['victim-photo-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Victim Photo
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="victimPhotos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Photo</span></th>
+            <th><span>Report</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let victimPhoto of victimPhotos ;trackBy: trackId">
+                <td><a [routerLink]="['../victim-photo', victimPhoto.id ]">{{victimPhoto.id}}</a></td>
+                <td>
+                    <a *ngIf="victimPhoto.photo" (click)="openFile(victimPhoto.photoContentType, victimPhoto.photo)">
+                        <img [src]="'data:' + victimPhoto.photoContentType + ';base64,' + victimPhoto.photo" style="max-height: 30px;" alt="victimPhoto image"/>
+                    </a>
+                    <span *ngIf="victimPhoto.photo">{{victimPhoto.photoContentType}}, {{byteSize(victimPhoto.photo)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="victimPhoto.report">
+                        <a [routerLink]="['../report', victimPhoto.report?.id ]" >{{victimPhoto.report?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../victim-photo', victimPhoto.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'victim-photo/'+ victimPhoto.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'victim-photo/'+ victimPhoto.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

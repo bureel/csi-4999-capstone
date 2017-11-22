@@ -155,7 +155,19 @@
             <input type="hidden" class="form-control" name="photosContentType" id="field_photosContentType"
                 [(ngModel)]="report.photosContentType" />
         </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_additionalInformation">Additional Information</label>
+            <input type="text" class="form-control" name="additionalInformation" id="field_additionalInformation"
+                [(ngModel)]="report.additionalInformation"  />
+        </div>
 
+        <div class="form-group">
+            <label class="form-control-label" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="report.userId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
@@ -6,38 +6,38 @@ import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
-import { Report } from './report.model';
-import { ReportPopupService } from './report-popup.service';
-import { ReportService } from './report.service';
-import { User, UserService } from '../../shared';
+import { VictimPhoto } from './victim-photo.model';
+import { VictimPhotoPopupService } from './victim-photo-popup.service';
+import { VictimPhotoService } from './victim-photo.service';
+import { Report, ReportService } from '../report';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
-    selector: 'jhi-report-dialog',
-    templateUrl: './report-dialog.component.html'
+    selector: 'jhi-victim-photo-dialog',
+    templateUrl: './victim-photo-dialog.component.html'
 })
-export class ReportDialogComponent implements OnInit {
+export class VictimPhotoDialogComponent implements OnInit {
 
-    report: Report;
+    victimPhoto: VictimPhoto;
     isSaving: boolean;
 
-    users: User[];
-    dateOfBirthDp: any;
+    reports: Report[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private dataUtils: JhiDataUtils,
         private jhiAlertService: JhiAlertService,
+        private victimPhotoService: VictimPhotoService,
         private reportService: ReportService,
-        private userService: UserService,
+        private elementRef: ElementRef,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.userService.query()
-            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.reportService.query()
+            .subscribe((res: ResponseWrapper) => { this.reports = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     byteSize(field) {
@@ -52,28 +52,32 @@ export class ReportDialogComponent implements OnInit {
         this.dataUtils.setFileData(event, entity, field, isImage);
     }
 
+    clearInputImage(field: string, fieldContentType: string, idInput: string) {
+        this.dataUtils.clearInputImage(this.victimPhoto, this.elementRef, field, fieldContentType, idInput);
+    }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
 
     save() {
         this.isSaving = true;
-        if (this.report.id !== undefined) {
+        if (this.victimPhoto.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.reportService.update(this.report));
+                this.victimPhotoService.update(this.victimPhoto));
         } else {
             this.subscribeToSaveResponse(
-                this.reportService.create(this.report));
+                this.victimPhotoService.create(this.victimPhoto));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Report>) {
-        result.subscribe((res: Report) =>
+    private subscribeToSaveResponse(result: Observable<VictimPhoto>) {
+        result.subscribe((res: VictimPhoto) =>
             this.onSaveSuccess(res), (res: Response) => this.onSaveError());
     }
 
-    private onSaveSuccess(result: Report) {
-        this.eventManager.broadcast({ name: 'reportListModification', content: 'OK'});
+    private onSaveSuccess(result: VictimPhoto) {
+        this.eventManager.broadcast({ name: 'victimPhotoListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -86,32 +90,32 @@ export class ReportDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackUserById(index: number, item: User) {
+    trackReportById(index: number, item: Report) {
         return item.id;
     }
 }
 
 @Component({
-    selector: 'jhi-report-popup',
+    selector: 'jhi-victim-photo-popup',
     template: ''
 })
-export class ReportPopupComponent implements OnInit, OnDestroy {
+export class VictimPhotoPopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 
     constructor(
         private route: ActivatedRoute,
-        private reportPopupService: ReportPopupService
+        private victimPhotoPopupService: VictimPhotoPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.reportPopupService
-                    .open(ReportDialogComponent as Component, params['id']);
+                this.victimPhotoPopupService
+                    .open(VictimPhotoDialogComponent as Component, params['id']);
             } else {
-                this.reportPopupService
-                    .open(ReportDialogComponent as Component);
+                this.victimPhotoPopupService
+                    .open(VictimPhotoDialogComponent as Component);
             }
         });
     }

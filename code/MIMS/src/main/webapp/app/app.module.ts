@@ -12,6 +12,9 @@ import { MimsEntityModule } from './entities/entity.module';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 
+import { MimsAppCreateReportModule } from './create-report/create-report.module';
+import { MimsAppReportPageModule } from './report-page/report-page.module';
+import { ReportBuilderModule } from './report-builder/report-builder.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
 import {
@@ -34,6 +37,9 @@ import {
         MimsAdminModule,
         MimsAccountModule,
         MimsEntityModule,
+        MimsAppCreateReportModule,
+        MimsAppReportPageModule,
+        ReportBuilderModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

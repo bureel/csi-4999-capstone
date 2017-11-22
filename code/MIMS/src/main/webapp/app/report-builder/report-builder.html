@@ -1,0 +1,58 @@
+<div>
+    <div class="col-sm-3"
+         [class.current]="currentStep == 1"
+         [class.complete]="currentStep > 1">
+        Step 1
+    </div>
+    <div class="col-sm-3"
+         [class.current]="currentStep == 2"
+         [class.complete]="currentStep > 2">
+        Step 2
+    </div>
+    <div class="col-sm-3"
+         [class.current]="currentStep == 3"
+         [class.complete]="currentStep > 3">
+        Step 3
+    </div>
+    <div class="col-sm-3"
+         [class.current]="currentStep == 4"
+         [class.complete]="currentStep > 4">
+        Step 4
+    </div>
+    <div class="col-sm-3"
+         [class.current]="currentStep == 5"
+         [class.complete]="currentStep > 5">
+        Step 5
+    </div>
+    <div class="col-sm-3"
+         [class.current]="currentStep == 6"
+         [class.complete]="currentStep > 6">
+        Step 6
+    </div>
+</div>
+<div [ngSwitch]="currentStep" class="col-xs-12">
+    <app-step-1-victim-info *ngSwitchCase="1"
+                       [form]="form"
+                       (submit)="onStepSubmit()"></app-step-1-victim-info>
+    <app-step-2-victim-details *ngSwitchCase="2"
+                       [form]="form"
+                       (submit)="onStepSubmit()"></app-step-2-victim-details>
+    <app-wizard-step-3 *ngSwitchCase="3"
+                       [form]="form"
+                       (onCommentChanged)="setComment($event)"
+                       (submit)="onStepSubmit()"></app-wizard-step-3>
+    <app-wizard-step-4 *ngSwitchCase="4"
+                       [form]="form"
+                       (onCommentChanged)="setComment($event)"
+                       (submit)="onStepSubmit()"></app-wizard-step-4>
+    <app-wizard-step-5 *ngSwitchCase="5"
+                       [form]="form"
+                       (onCommentChanged)="setComment($event)"
+                       (submit)="onStepSubmit()"></app-wizard-step-5>
+    <div *ngSwitchCase="6">
+        <p>Form submitted. Thank you.</p>
+    </div>
+</div>
+
+<p>Current form data</p>
+<pre>{{form | json}}</pre>

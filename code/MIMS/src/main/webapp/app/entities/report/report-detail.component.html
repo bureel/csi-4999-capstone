@@ -96,9 +96,19 @@
         <dd>
             <span>{{report.updatedAt | date:'medium'}}</span>
         </dd>
-        <dt><span>Photos</span></dt>
+        <dt><span>Photo</span></dt>
         <dd>
-            <span>{{report.photos}}</span>
+            <a *ngIf="report.photos" (click)="openFile(report.photosContentType, report.photos)">
+                <img [src]="'data:' + report.photosContentType + ';base64,' + report.photos" style="max-height: 30px;" alt="report image"/>
+            </a>
+        </dd>
+        <dt><span>Additional Information</span></dt>
+        <dd>
+            <span>{{report.additionalInformation}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{report.userLogin}}
         </dd>
     </dl>
 
