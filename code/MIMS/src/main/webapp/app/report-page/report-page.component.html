@@ -3,9 +3,20 @@
   <div class="col-md-10">
     <h1 class="text-capitalize text-center">Reports</h1>
     <hr/>
-    <div *ngFor="let report of reports">
-      <a [routerLink]="['../report', report.id ]">{{report.victimName}}</a><br>
-    </div><br><br>
+    <div *ngFor="let report of reports;let i=index">
+      <a [routerLink]="['../report', report.id ]">{{report.victimName}}</a>
+      <button *ngIf="report.status == 'active'" (click)="close(i)" class="btn btn-primary">Close</button>
+      <button *ngIf="report.status == 'pending' && addOpen[i] != true" (click)="addOpen[i] = true" class="btn btn-primary">Add Investigator Information</button><br>
+      <form *ngIf="addOpen[i] == true" #editForm="ngForm">
+          <input id="complaintNumber" name="complaintNumber" class="form-control" [(ngModel)]="reports[i].complaintNumber" type="number" placeholder="Complaint number" pattern="[0-9]+" #complaintNumber="ngModel" required/><br>            
+          <input id="reportNumber" name="reportNumber" class="form-control" [(ngModel)]="reports[i].reportNumber" type="number" placeholder="Report number" pattern="[0-9]+" #reportNumber="ngModel" required/><br>            
+          <input id="investigatorName" name="investigatorName" class="form-control" [(ngModel)]="reports[i].investigatorName" type="text" placeholder="Investigator name" #investigatorName="ngModel" required/><br>
+          <input id="investigatorEmail" name="investigatorEmail" class="form-control"  [(ngModel)]="reports[i].investigatorEmail" type="email" placeholder="Investigator email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #investigatorEmail="ngModel" required/>
+          <button type="submit" (click)="save(i)" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+              <span class="fa fa-save"></span>&nbsp;<span>Save</span></button>
+          <button (click)="addOpen[i] = false" class="btn btn-primary">Cancel</button>
+        </form><br>
+      </div><br><br>
     <a routerLink="/create-report"><button class="btn btn-primary">Create Report</button></a>
   </div>
   <div class="col-md-1"></div>

@@ -4,7 +4,7 @@
     <h1 class="text-capitalize text-center">Missing Persons</h1>
     <hr/>
     <div class="victim-images" *ngFor="let report of reports">
-      <a *ngIf="report.photos" [routerLink]="['../missing-person-detail', report.id ]">
+      <a *ngIf="report.photos && report.status == 'active'" [routerLink]="['../missing-person-detail', report.id ]">
         {{report.victimName}}<br>
         <img [src]="'data:' + report.photosContentType + ';base64,' + report.photos" style="max-height: 100px;" alt="report image"/>
       </a>
