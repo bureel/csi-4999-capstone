@@ -3,23 +3,23 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager, JhiDataUtils } from 'ng-jhipster';
 
-import { Report } from './report.model';
-import { ReportService } from './report.service';
+import { Tip } from './tip.model';
+import { TipService } from './tip.service';
 
 @Component({
-    selector: 'jhi-report-detail',
-    templateUrl: './report-detail.component.html'
+    selector: 'jhi-tip-detail',
+    templateUrl: './tip-detail.component.html'
 })
-export class ReportDetailComponent implements OnInit, OnDestroy {
+export class TipDetailComponent implements OnInit, OnDestroy {
 
-    report: Report;
+    tip: Tip;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
     constructor(
         private eventManager: JhiEventManager,
         private dataUtils: JhiDataUtils,
-        private reportService: ReportService,
+        private tipService: TipService,
         private route: ActivatedRoute
     ) {
     }
@@ -28,12 +28,12 @@ export class ReportDetailComponent implements OnInit, OnDestroy {
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
-        this.registerChangeInReports();
+        this.registerChangeInTips();
     }
 
     load(id) {
-        this.reportService.find(id).subscribe((report) => {
-            this.report = report;
+        this.tipService.find(id).subscribe((tip) => {
+            this.tip = tip;
         });
     }
     byteSize(field) {
@@ -43,7 +43,6 @@ export class ReportDetailComponent implements OnInit, OnDestroy {
     openFile(contentType, field) {
         return this.dataUtils.openFile(contentType, field);
     }
-
     previousState() {
         window.history.back();
     }
@@ -53,10 +52,10 @@ export class ReportDetailComponent implements OnInit, OnDestroy {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    registerChangeInReports() {
+    registerChangeInTips() {
         this.eventSubscriber = this.eventManager.subscribe(
-            'reportListModification',
-            (response) => this.load(this.report.id)
+            'tipListModification',
+            (response) => this.load(this.tip.id)
         );
     }
 }

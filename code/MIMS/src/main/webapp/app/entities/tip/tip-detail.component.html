@@ -1,0 +1,44 @@
+
+<div *ngIf="tip">
+    <h2><span>Tip</span> {{tip.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Information</span></dt>
+        <dd>
+            <span>{{tip.information}}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+            <div *ngIf="tip.photo">
+                <a (click)="openFile(tip.photoContentType, tip.photo)">
+                    <img [src]="'data:' + tip.photoContentType + ';base64,' + tip.photo" style="max-width: 100%;" alt="tip image"/>
+                </a>
+                {{tip.photoContentType}}, {{byteSize(tip.photo)}}
+            </div>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+            <span>{{tip.email}}</span>
+        </dd>
+        <dt><span>Report</span></dt>
+        <dd>
+            <div *ngIf="tip.report">
+                <a [routerLink]="['/report', tip.report?.id]">{{tip.report?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tip/'+ tip.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

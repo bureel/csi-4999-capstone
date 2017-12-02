@@ -14,6 +14,9 @@ import { PaginationConfig } from './blocks/config/uib-pagination.config';
 
 import { MimsAppCreateReportModule } from './create-report/create-report.module';
 import { MimsAppReportPageModule } from './report-page/report-page.module';
+import { MimsAppViewVictimsModule } from './view-victims/view-victims.module';
+import { MimsAppSingleDetailModule } from './single-detail/single-detail.module';
+import { MimsAppPublicTipModule } from './public-tip/public-tip.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
 import {
@@ -38,6 +41,9 @@ import {
         MimsEntityModule,
         MimsAppCreateReportModule,
         MimsAppReportPageModule,
+        MimsAppViewVictimsModule,
+        MimsAppSingleDetailModule,
+        MimsAppPublicTipModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

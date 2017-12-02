@@ -85,6 +85,11 @@ export class CreateReportComponent implements OnInit {
 
   save() {
       this.isSaving = true;
+      if (this.report.investigatorEmail == null) {
+          this.report.status = 'pending';
+      } else {
+          this.report.status = 'active';
+      }
       if (this.report.id !== undefined) {
           this.subscribeToSaveResponse(
               this.reportService.update(this.report));
@@ -118,12 +123,12 @@ export class CreateReportComponent implements OnInit {
       }
   }
       this.isSaving = false;
+      this.router.navigate(['/family-home']);
   }
 
   private onPhotoSaveSuccess(result: VictimPhoto) {
     this.eventManager.broadcast({ name: 'victimPhotoListModification', content: 'OK'});
     this.isSaving = false;
-    this.router.navigate(['/family-home']);
 }
 
   private onSaveError() {
