@@ -21,7 +21,7 @@
             "content/css/vendor.css",
             "content/css/global.css"
         ],
-        "scripts": []
+        "scripts": [ "../node_modules/jspdf/dist/jspdf.min.js" ]
     }],
     "lint": [{
             "project": "../../../tsconfig.json"
