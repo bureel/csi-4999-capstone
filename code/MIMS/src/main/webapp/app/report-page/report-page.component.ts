@@ -99,11 +99,13 @@ private onError(error) {
 }
 
 close(i: number) {
-  this.isSaving = true;
-  this.reports[i].status = 'closed';
-  this.fixDates(this.reports[i]);
-  this.subscribeToSaveResponse(
-    this.reportService.update(this.reports[i]));
+  if (confirm('Are you sure to close this report?')) {
+    this.isSaving = true;
+    this.reports[i].status = 'closed';
+    this.fixDates(this.reports[i]);
+    this.subscribeToSaveResponse(
+      this.reportService.update(this.reports[i]));
+    }
 }
 
 save(i: number) {
@@ -183,7 +185,7 @@ download(report: Report) {
       doc.text(20, 250, report.additionalInformation);
     }
     // Save the PDF
-    doc.save('Test.pdf');
+    doc.save('Report.pdf');
 }
 
 }

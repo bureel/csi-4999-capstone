@@ -6,7 +6,7 @@
     <div *ngFor="let report of reports;let i=index">
       <a [routerLink]="['../report', report.id ]">{{report.victimName}}</a>
       <button *ngIf="report.status == 'active'" (click)="close(i)" class="btn btn-primary">Close</button>
-      <button *ngIf="report.status == 'pending' && addOpen[i] != true" (click)="addOpen[i] = true" class="btn btn-primary">Add Investigator Information</button><br>
+      <button *ngIf="report.status == 'pending' && addOpen[i] != true" (click)="addOpen[i] = true" class="btn btn-primary">Add Investigator Information</button>
       <button (click)="download(report)" class="btn btn-primary">Download PDF</button><br>
       <form *ngIf="addOpen[i] == true" #editForm="ngForm">
           <input id="complaintNumber" name="complaintNumber" class="form-control" [(ngModel)]="reports[i].complaintNumber" type="number" placeholder="Complaint number" pattern="[0-9]+" #complaintNumber="ngModel" required/><br>            
