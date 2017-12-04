@@ -10,6 +10,8 @@ import { ReportService } from '../entities/report/report.service';
 import { ITEMS_PER_PAGE, ResponseWrapper, createRequestOption } from '../shared';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
+import * as jsPDF from 'jspdf'
+
 @Component({
   selector: 'jhi-report-page',
   templateUrl: './report-page.component.html',
@@ -97,11 +99,13 @@ private onError(error) {
 }
 
 close(i: number) {
-  this.isSaving = true;
-  this.reports[i].status = 'closed';
-  this.fixDates(this.reports[i]);
-  this.subscribeToSaveResponse(
-    this.reportService.update(this.reports[i]));
+  if (confirm('Are you sure to close this report?')) {
+    this.isSaving = true;
+    this.reports[i].status = 'closed';
+    this.fixDates(this.reports[i]);
+    this.subscribeToSaveResponse(
+      this.reportService.update(this.reports[i]));
+    }
 }
 
 save(i: number) {
@@ -149,6 +153,39 @@ private fixDates(report: Report) {
     report.updatedAt.setHours( report.updatedAt.getHours() + (report.updatedAt.getTimezoneOffset() / - 60) );
     report.updatedAt = report.updatedAt.toJSON();
   }
+}
+
+download(report: Report) {
+
+    const doc = new jsPDF();
+    doc.text(10, 20, 'Victim Information');
+    doc.text(20, 30, 'Name: ' + report.victimName);
+    doc.text(20, 40, 'Phone Number: ' + report.victimPhoneNumber);
+    doc.text(20, 50, 'Email: ' + report.victimEmail);
+    doc.text(20, 60, 'Date of birth: ' + report.dateOfBirth);
+    doc.text(20, 70, 'Height: ' + report.height);
+    doc.text(20, 80, 'Eye color: ' + report.eyeColor);
+    doc.text(20, 90, 'Demographic: ' + report.demographic);
+
+    doc.text(10, 110, 'Guardian Information');
+    doc.text(20, 120, 'Name: ' + report.parentName);
+    doc.text(20, 130, 'Phone Number: ' + report.parentPhoneNumber);
+    doc.text(20, 140, 'Email: ' + report.parentEmail);
+
+    doc.text(10, 160, 'Last Seen Detail');
+    doc.text(20, 170, 'Last known location: ' + report.lastKnownLocation);
+    doc.text(20, 180, 'Last seen: ' + report.lastSeen);
+
+    doc.text(10, 200, 'Phone Service');
+    doc.text(20, 210, 'Serivce provider: ' + report.serviceProvider);
+    doc.text(20, 220, 'Account number: ' + report.serviceProviderAccountNumber);
+
+    if (report.additionalInformation != null) {
+      doc.text(10, 240, 'Additional Information');
+      doc.text(20, 250, report.additionalInformation);
+    }
+    // Save the PDF
+    doc.save('Report.pdf');
 }
 
 }
