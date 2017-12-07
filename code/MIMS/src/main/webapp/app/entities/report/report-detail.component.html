@@ -1,116 +1,213 @@
 
 <div *ngIf="report">
     <h2><span>Report</span> {{report.id}}</h2>
-    <hr>
+    <hr><hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span>Status</span></dt>
-        <dd>
-            <span>{{report.status}}</span>
-        </dd>
-        <dt><span>Resolution</span></dt>
-        <dd>
-            <span>{{report.resolution}}</span>
-        </dd>
-        <dt><span>Victim Name</span></dt>
-        <dd>
-            <span>{{report.victimName}}</span>
-        </dd>
-        <dt><span>Victim Phone Number</span></dt>
-        <dd>
-            <span>{{report.victimPhoneNumber}}</span>
-        </dd>
-        <dt><span>Victim Email</span></dt>
-        <dd>
-            <span>{{report.victimEmail}}</span>
-        </dd>
-        <dt><span>Parent Name</span></dt>
-        <dd>
-            <span>{{report.parentName}}</span>
-        </dd>
-        <dt><span>Parent Phone Number</span></dt>
-        <dd>
-            <span>{{report.parentPhoneNumber}}</span>
-        </dd>
-        <dt><span>Parent Email</span></dt>
-        <dd>
-            <span>{{report.parentEmail}}</span>
-        </dd>
-        <dt><span>Date Of Birth</span></dt>
-        <dd>
-            <span>{{report.dateOfBirth | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span>Height</span></dt>
-        <dd>
-            <span>{{report.height}}</span>
-        </dd>
-        <dt><span>Weight</span></dt>
-        <dd>
-            <span>{{report.weight}}</span>
-        </dd>
-        <dt><span>Eye Color</span></dt>
-        <dd>
-            <span>{{report.eyeColor}}</span>
-        </dd>
-        <dt><span>Demographic</span></dt>
-        <dd>
-            <span>{{report.demographic}}</span>
-        </dd>
-        <dt><span>Last Known Location</span></dt>
-        <dd>
-            <span>{{report.lastKnownLocation}}</span>
-        </dd>
-        <dt><span>Last Seen</span></dt>
-        <dd>
-            <span>{{report.lastSeen | date:'medium'}}</span>
-        </dd>
-        <dt><span>Service Provider</span></dt>
-        <dd>
-            <span>{{report.serviceProvider}}</span>
-        </dd>
-        <dt><span>Service Provider Account Number</span></dt>
-        <dd>
-            <span>{{report.serviceProviderAccountNumber}}</span>
-        </dd>
-        <dt><span>Complaint Number</span></dt>
-        <dd>
-            <span>{{report.complaintNumber}}</span>
-        </dd>
-        <dt><span>Report Number</span></dt>
-        <dd>
-            <span>{{report.reportNumber}}</span>
-        </dd>
-        <dt><span>Investigator Name</span></dt>
-        <dd>
-            <span>{{report.investigatorName}}</span>
-        </dd>
-        <dt><span>Investigator Email</span></dt>
-        <dd>
-            <span>{{report.investigatorEmail}}</span>
-        </dd>
-        <dt><span>Created At</span></dt>
-        <dd>
-            <span>{{report.createdAt | date:'medium'}}</span>
-        </dd>
-        <dt><span>Updated At</span></dt>
-        <dd>
-            <span>{{report.updatedAt | date:'medium'}}</span>
-        </dd>
-        <dt><span>Photo</span></dt>
-        <dd>
+    <div class="row jh-entity-details">
+			<div class="col-sm-12">
+				<h3 style="text-align:center; text-decoration:underline;"><span>Victim Name:</span>
+				<small>
+					<span>{{report.victimName}}</span>
+				</small></h3>
+			</div>
+			
+			<div class="col-sm-1"></div>
+			<div class="col-sm-4"> 
+			 <h5><span>Photo</span></h5>
+        <small>
             <a *ngIf="report.photos" (click)="openFile(report.photosContentType, report.photos)">
                 <img [src]="'data:' + report.photosContentType + ';base64,' + report.photos" style="max-height: 30px;" alt="report image"/>
             </a>
-        </dd>
-        <dt><span>Additional Information</span></dt>
-        <dd>
-            <span>{{report.additionalInformation}}</span>
-        </dd>
-        <dt><span>User</span></dt>
-        <dd>
-            {{report.userLogin}}
-        </dd>
-    </dl>
+        </small>
+		</div>
+			
+
+			
+			<div class="col-sm-2">
+				<h5><span>Status:</span>
+						<small>
+					<span>{{report.status}}</span>
+				</small></h5>
+			</div>
+			<div class="col-sm-2">
+				<h5><span>Resolution:</span>
+				
+				<small>
+					<span>{{report.resolution}}</span>
+				</small></h5>
+			</div>
+			
+			
+			
+			
+			<div class="col-sm-12"><br><h6> Investigation Information:</h6><hr style="padding:0; margin-top:0;"></div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-4">
+					<h5><span>Investigator Name:</span>
+					<small>
+						<span>{{report.investigatorName}}</span>
+					</small></h5>
+				</div>
+				<div class="col-sm-4">
+					<h5><span>Investigator Email:</span>
+					<small>
+						<span>{{report.investigatorEmail}}</span>
+					</small></h5>
+				</div>
+	<div class="col-sm-12"></div>
+	<div class="col-sm-1"></div>
+			<div class="col-sm-4">
+				<h5><span>Complaint Number:</span>
+				<small>
+					<span>{{report.complaintNumber}}</span>
+				</small></h5>
+			</div>
+			<div class="col-sm-3">
+				<h5><span>Report Number:</span>
+				<small>
+					<span>{{report.reportNumber}}</span>
+				</small></h5>
+			</div>
+			
+		
+		
+		
+<!-- parent information         -->
+        <div class="col-sm-12"><br><h6> Parent Information:</h6><hr style="padding:0; margin-top:0;"></div>
+		<div class="col-sm-1"></div>
+		<div class="col-sm-4">
+			<h5><span>Parent Name:</span>
+			<small>
+				<span>{{report.parentName}}</span>
+			</small></h5>
+        </div>
+		<div class="col-sm-4">
+			<h5><span>Parent Phone Number:</span>
+			<small>
+				<span>{{report.parentPhoneNumber}}</span>
+			</small></h5>
+        </div>
+		<div class="col-sm-3">
+			<h5><span>Parent Email:</span>
+			<small>
+				<span>{{report.parentEmail}}</span>
+			</small></h5>
+		</div>
+
+		
+		<!-- Victim discription -->			
+    <div class="col-sm-12"><br><h6> Victim Discription:</h6><hr style="padding:0; margin-top:0;"></div>
+<div class="col-sm-1"></div>
+		<div class="col-sm-3">
+				<h5><span>Date Of Birth:</span>
+				<small>
+					<span>{{report.dateOfBirth | date:'mediumDate'}}</span>
+				</small></h5>
+		</div>
+			<div class="col-sm-2">
+				<h5><span>Height:</span>
+				<small>
+					<span>{{report.height}}</span>
+				</small></h5>
+		</div>
+			<div class="col-sm-2">
+				<h5><span>Weight:</span>
+				<small>
+					<span>{{report.weight}}</span>
+				</small></h5>
+		</div>
+			<div class="col-sm-2">
+				<h5><span>Eye Color:</span>
+				<small>
+					<span>{{report.eyeColor}}</span>
+				</small></h5>
+		</div>
+			<div class="col-sm-2">
+				<h5><span>Demographic:</span>
+				<small>
+					<span>{{report.demographic}}</span>
+				</small></h5>
+		</div>
+		<div class="col-sm-12"></div>
+		<div class="col-sm-1"></div>
+		<div class="col-sm-8">
+				<h5><span>Additional Information:</span>
+				<small>
+					<span>{{report.asmallitionalInformation}}</span>
+				</small></h5>
+		</div>		
+		
+		<div class="col-sm-12"><br><h6>Victim contact Information:</h6><hr style="padding:0; margin-top:0;"></div>
+			<div class="col-sm-4">
+				<h5><span>Victim Phone Number:</span>
+				<small>
+					<span >{{report.victimPhoneNumber}}</span>
+				</small></h5>
+			</div>
+			<div class="col-sm-4">
+				<h5><span>Victim Email:</span>
+				<small>
+					<span>{{report.victimEmail}}</span>
+				</small></h5>
+			</div>
+
+
+		
+<!-- Last known Location -->
+	<div class="col-sm-12"><br><h6> Last Known Location:</h6><hr style="padding:0; margin-top:0;"></div>
+
+			<div class="col-sm-4">
+				<h5><span>Last Known Location:</span>
+				<small>
+					<span>{{report.lastKnownLocation}}</span>
+				</small></h5>
+		</div>
+			<div class="col-sm-4">
+				<h5><span>Last Seen:</span>
+				<small>
+					<span>{{report.lastSeen | date:'medium'}}</span>
+				</small></h5>
+		</div>
+		
+	
+<!-- contacts info -->
+	<div class="col-sm-12"><br><h6>Known Contacts:</h6><hr style="padding:0; margin-top:0;"></div>
+
+		<div class="col-sm-4">
+				<h5><span>Service Provider:</span>
+				<small>
+					<span>{{report.serviceProvider}}</span>
+				</small></h5>
+		</div>
+			<div class="col-sm-4">
+				<h5><span>Service Provider Account Number:</span>
+				<small>
+					<span>{{report.serviceProviderAccountNumber}}</span>
+				</small></h5>
+		</div>
+<!-- Profile information -->
+		
+	<div class="col-sm-12"><br><h6>Profile Information:</div><hr style="padding:0; margin-top:0;">
+			<div class="col-sm-3">
+				<h5><span>Created At:</span>
+				<small>
+					<span>{{report.createdAt | date:'medium'}}</span>
+				</small></h5>
+			</div>
+				<div class="col-sm-3">
+					<h5><span>Updated At:</span>
+					<small>
+						<span>{{report.updatedAt | date:'medium'}}</span>
+					</small></h5>
+		   </div>
+				
+				<div class="col-sm-3">
+			<h5><span>User:</span>
+			<small>
+				{{report.userLogin}}
+			</small></h5>
+			</div>
+    </div>
 
     <button type="submit"
             (click)="previousState()"
