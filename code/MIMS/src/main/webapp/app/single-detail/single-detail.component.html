@@ -1,19 +1,56 @@
 <div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
-    <h1 class="text-capitalize text-center">{{report.victimName}}</h1>
-    <hr/>
-    <img [src]="'data:' + report.photosContentType + ';base64,' + report.photos" style="max-height: 200px;" alt="victim photo"/>
-    <div class="victim-images" *ngFor="let victimPhoto of victimPhotos">
-      <a *ngIf="victimPhoto.photo && victimPhoto.report.id == report.id" (click)="openFile(victimPhoto.photoContentType, victimPhoto.photo)">
-        <img [src]="'data:' + victimPhoto.photoContentType + ';base64,' + victimPhoto.photo" style="max-height: 100px;" alt="victim photo"/>
-      </a>
-    </div><br>
-    <div class="information">
-      Last seen: {{report.lastSeen}}<br>
-      Last known location: {{report.lastKnownLocation}}<br>
-    </div>
-    <a [routerLink]="['../../submitTip', report.id ]"><button class="btn btn-primary">Submit tip</button></a>
-  </div>
-  <div class="col-md-1"></div>
+  
+  
+  
+  
+  
+		<div class="col-sm-12">
+			<h1 class="text-capitalize text-center">{{report.victimName}}</h1>
+			<hr/>
+		</div>
+		
+		<div class="col-sm-3"></div>
+		
+		<div class="col-sm-3">
+			<img class="img-thumbnail" [src]="'data:' + report.photosContentType + ';base64,' + report.photos" alt="victim photo"/>
+				<div class="victim-images" *ngFor="let victimPhoto of victimPhotos">
+				  
+					  <a *ngIf="victimPhoto.photo && victimPhoto.report.id == report.id" (click)="openFile(victimPhoto.photoContentType, victimPhoto.photo)">
+						
+						<img [src]="'data:' + victimPhoto.photoContentType + ';base64,' + victimPhoto.photo" style= "float:left; max-height: 100px; padding :1px;" alt="victim photo"/>
+					  </a>
+				  
+				</div>
+		</div>
+			<br>
+			
+		<div class="col-sm-5">	
+				<div class="information">
+				
+				
+					Investigator Name: {{report.investigatorName}}<br>			
+					Investigator Email: {{report.investigatorEmail}}<br>
+					Report Number: {{report.reportNumber}}<br> <br>
+					
+					
+					Last seen: {{report.lastSeen}}<br>
+					Last known location: {{report.lastKnownLocation}}<br> <br>
+					
+					Height: {{report.height}}<br>
+					Eye Color: {{report.eyeColor}}<br>
+					Weight: {{report.weight}}<br>
+					Additional info: {{report.asmallitionalInformation}}<br>
+				</div>
+		</div>
+		
+		<div class="col-sm-10"></div>
+		
+		<div class="col-sm-6"></div>
+		<div class="col-sm-5">
+			<a [routerLink]="['../../submitTip', report.id ]"><button class="btn btn-primary">Submit tip</button></a>
+		</div>
+		
+		
+  
+ 
 </div>

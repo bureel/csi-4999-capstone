@@ -5,20 +5,20 @@
     <jhi-alert-error></jhi-alert-error>
     <div class="row jh-entity-details">
 			<div class="col-sm-12">
-				<h3 style="text-align:center; text-decoration:underline;"><span>Victim Name:</span>
+				<h2 style="text-align:center; text-decoration:underline;"><span>Victim Name:</span>
 				<small>
 					<span>{{report.victimName}}</span>
-				</small></h3>
+				</small></h2>
 			</div>
 			
 			<div class="col-sm-1"></div>
 			<div class="col-sm-4"> 
 			 <h5><span>Photo</span></h5>
-        <small>
+        
             <a *ngIf="report.photos" (click)="openFile(report.photosContentType, report.photos)">
-                <img [src]="'data:' + report.photosContentType + ';base64,' + report.photos" style="max-height: 30px;" alt="report image"/>
+                <img class="img-thumbnail" [src]="'data:' + report.photosContentType + ';base64,' + report.photos"  alt="report image"/>
             </a>
-        </small>
+        
 		</div>
 			
 
