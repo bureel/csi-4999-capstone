@@ -9,7 +9,7 @@ import { ReportService } from './report.service';
 @Component({
     selector: 'jhi-report-detail',
     templateUrl: './report-detail.component.html',
-	styleUrls: [ 'report-detail.component.css' ]
+    styleUrls: [ 'report-detail.component.css' ]
 })
 export class ReportDetailComponent implements OnInit, OnDestroy {
 

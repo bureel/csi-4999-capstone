@@ -99,7 +99,7 @@ private onError(error) {
 }
 
 close(i: number) {
-  if (confirm('Are you sure to close this report?')) {
+  if (confirm('Are you sure you want to close this report?')) {
     this.isSaving = true;
     this.reports[i].status = 'closed';
     this.fixDates(this.reports[i]);
