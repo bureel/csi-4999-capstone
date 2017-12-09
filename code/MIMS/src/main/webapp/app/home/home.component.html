@@ -1,25 +1,35 @@
 <div class="row">
+	<div class="col-md-2"></div>
     <div class="col-md-3">
         <span class="hipster img-fluid rounded"></span>
     </div>
-    <div class="col-md-9">
-        <h1 class="display-4">Welcome, Citizen!</h1>
-        <p class="lead">This is your homepage</p>
+    <div class="col-md-7">
+		<div class="row">
+			<div class="col-md-9">
+				<h1 class="display-4">Welcome!</h1>
+				<p class="lead">To the Missing in Michigan System homepage</p>
 
-        <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-                <span *ngIf="account"
-                   > You are logged in as user "{{account.login}}". </span>
-            </div>
+						<div [ngSwitch]="isAuthenticated()">
+							<div class="col-md-9 alert alert-success" *ngSwitchCase="true">
+								<span *ngIf="account"
+								   > You are logged in as user "{{account.login}}". </span>
+							</div>
 
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <a class="alert-link" (click)="login()">Sign in</a>
-            </div>
-
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>You don't have an account yet?</span>
-                <a class="alert-link" routerLink="register">Register a new account</a>
-            </div>
-        </div>
+							<div class="col-md-9 alert alert-warning" *ngSwitchCase="false">
+								<span> Looking to help? view </span>
+								<a class="alert-link" routerLink="/missing-persons" (click)="collapseNavbar()"> Missing Persons</a>
+							</div>
+				<div class="col-md-12">
+							<div class="col-md-9 alert alert-warning" *ngSwitchCase="false">
+								<span>Don't have an account yet?</span>
+								<a class="alert-link" routerLink="register">Register a new account</a><br>
+								
+								<span>otherwise </span>
+								<a class="alert-link" (click)="login()">Sign in</a>
+							</div>
+				
+						</div>
+			</div>
+		</div>
     </div>
 </div>
