@@ -8,19 +8,24 @@ button:disabled {
 	border: #c0c0c0;
 }
 input {
-	border-radius: 2px;
+	border-radius: 3px;
+	min-height: 2em;
+	padding:1px;
+	display: inline-block;
+	margin: 1em;
 }
 
 .stages {
 	font-size: 0;
-	text-align: justify;
+	text-align: center;
+	width: 100%;
 }
 
 .stages:after {
 	content: '';
 	display: inline-block;
 	font-size: 0;
-	text-align: justify;
+	text-align: center;
 	width: 100%;
 }
 
@@ -29,9 +34,11 @@ input[type="radio"] {
 }
 
 .stages label {
+	margin-left: 1em;
+	padding: 5px;
 	background: #ffffff;
 	border: solid 5px #c0c0c0;
-	border-radius: 50%;
+	border-radius: 30%;
 	cursor: pointer;
 	display: inline-block;
 	font-size: 0;
@@ -41,7 +48,7 @@ input[type="radio"] {
 	position: relative;
 	text-align: center;
 	vertical-align: top;
-	width: 50px;
+	min-width: 9em;
 	z-index: 1;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -55,6 +62,9 @@ input[type="radio"] {
 	content: '\2713';
 	color: #0cc39f;
 	display: inline-block;
+	margin-left: 1em;
+	min-width: 8em;
+	max-width: 8em;
 	font-size: 16px;
 }
 
